@@ -1,16 +1,19 @@
 Tick-tock
 ==========
-----------------------------------
 Tick-tock is an open source web app project for learning that provide a dairy service.
 
 It's based on Rails 3.2 and using MongoDB for persistence.
 
-Goal
+Core point
 ==========
-----------------------------------
+User's every dairy has equal value.
+Most of dairy apps using timeline or calendar to organize user's dairies, that made nearest has great chance be reviewed that made older's value lower.
+Tick-tock will display dairies randomly that keep every dairy's value.
+
+Features
+==========
 - Support rich-text, camera, sound record and image.
 - User needs choose a color to present his mood, maybe it's useful to datamining.
-- Using waterfall-flow to display user's dairy, it should choose different day, type and color records randmomly, that prevent dairies which too early lost it's value.
 - Support Oauth, can share to SNS.
 - *Location.
 - *Mobile native client.
@@ -18,7 +21,6 @@ Goal
 
 License
 ==========
-----------------------------------
 Copyright 2012 Jasl
 
 Permission is hereby granted, free of charge, to any person obtaining
