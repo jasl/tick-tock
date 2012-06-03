@@ -7,7 +7,9 @@ It's based on Rails 3.2 and using MongoDB for persistence.
 Core point
 ==========
 User's every dairy has equal value.
+
 Most of dairy apps using timeline or calendar to organize user's dairies, that made nearest has great chance be reviewed that made older's value lower.
+
 Tick-tock will display dairies randomly that keep every dairy's value.
 
 Features
