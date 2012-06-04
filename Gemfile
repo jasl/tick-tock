@@ -1,13 +1,28 @@
 source 'http://ruby.taobao.org'
 
 gem 'rails', '~> 3.2.3'
+gem 'rails-i18n'
 
 # Database
 gem 'mongoid'
 gem 'bson_ext'
+gem 'mongoid_colored_logger'
+gem 'mongoid_rails_migrations'
+gem 'mongo-rails-instrumentation'
+
+# User
+gem 'devise'
+# OAuth
+gem 'omniauth'
 
 # UI
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'jquery-rails'
+
+# Upload
+gem 'carrierwave'
+gem 'carrierwave-mongoid'
+gem 'mini_magick'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -20,8 +35,6 @@ group :assets do
 
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -1,0 +1,24 @@
+zh-CN:
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%e %b"
+      compact: "%y/%m/%d"
+      long: "%Y %B %e"
+    day_names: [周日, 周一, 周二, 周三, 周四, 周五, 周六]
+    abbr_day_names: [日, 一, 二, 三, 四, 五, 六]
+    month_names: [~, 一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月]
+    abbr_month_names: [~, 一月, 二月, 三月, 四月, 五月, 六月, 七月, 八月, 九月, 十月, 十一月, 十二月]
+    order:
+      - :day
+      - :month
+      - :year
+  time:
+    formats:
+      default: " %Y-%B-%d %H:%M:%S"
+      short: "%b %d %H:%M"
+      compact: "%y/%m/%d %H:%M"
+      long: "%Y-%B-%d %A %H:%M"
+      verb: "%Y-%B-%d "
+    am: 'am'
+    pm: 'pm'

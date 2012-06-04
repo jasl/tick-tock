@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "TickTock" %></title>
     <%= csrf_meta_tags %>
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
     <![endif]-->
@@ -29,13 +28,30 @@
             <span class="icon-bar"></span>
           </a>
           <a class="brand" href="#">TickTock</a>
-          <div class="container-fluid nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+            <div class="container-fluid nav-collapse">
+              <ul class="nav">
+                  <li class="active"><a href="/">Test</a></li>
+              </ul>
+              <ul class="nav pull-right">
+                <% unless user_signed_in? %>
+                  <li <%= 'class=active' if current_page?(:controller => 'registrations', :action => 'new') %>>
+                    <%= link_to 'Sign up', new_user_registration_path %>
+                  </li>
+                  <li <%= 'class=active' if current_page?(:controller => 'sessions', :action => 'new') %>>
+                    <%= link_to 'Sign_in', new_user_session_path %>
+                  </li>
+                <% else %>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                      <%= (current_user.name.blank?) ? current_user.email : current_user.name %>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete %></li>
+                    </ul>
+                  </li>
+                <% end %>
             </ul>
-          </div><!--/.nav-collapse -->
+          </div>
         </div>
       </div>
     </div>
@@ -58,14 +74,11 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2012</p>
+        <p>&copy; Jasl 2012</p>
       </footer>
 
-    </div> <!-- /container -->
+    </div>
 
-    <!-- Javascripts
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
 
   </body>
