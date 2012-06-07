@@ -16,7 +16,7 @@ gem 'devise'
 gem 'omniauth'
 
 # UI
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'twitter-bootstrap-rails'
 gem 'jquery-rails'
 
 # Upload
@@ -46,7 +46,13 @@ end
 gem 'unicorn'
 
 # Deploy with Capistrano
-gem 'capistrano'
 
+
+group :development do
+  gem 'capistrano'
+  gem 'capistrano-af83'
+  gem 'rvm-capistrano'
+  # gem 'ruby-debug19', :require => 'ruby-debug'
+end
 # To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
+#

@@ -1,9 +1,14 @@
-development:
+default: &default
+  identity_map_enabled: true
+  pool_size: 5
   host: localhost
+
+development:
+  <<: *default
   database: tick_tock_development
 
 test:
-  host: localhost
+  <<: *default
   database: tick_tock_test
 
 # set these environment variables on your prod server
