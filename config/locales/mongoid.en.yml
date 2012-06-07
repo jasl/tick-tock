@@ -1,0 +1,37 @@
+en:
+  mongoid:
+    models:
+      user: "User"
+    attributes:
+      user:
+        name: "Name"
+        email: "Email"
+        password: "Password"
+        password_confirmation: "Password Confirmation"
+        last_logined_at: "Last signed in at"
+        remember_me: "Remember me"
+        current_password: "Current Password"
+    errors:
+      models:
+        user: "User"
+      messages:
+        inclusion: "Inclusion"
+        exclusion: "Exclusion"
+        invalid: "Invalid"
+        confirmation: "Confirmation did not match"
+        accepted: "acceptance required."
+        empty: "Cannot be empty."
+        blank: "Cannot be blank."
+        too_long: "Too long (limited to %{count} characters)."
+        too_short: "Too short (at least %{count} characters are required)."
+        wrong_length: "Invalid length (valid length: %{count} characters)."
+        taken: "already taken"
+        not_a_number: "Not a number"
+        not_an_integer: "Not an integer"
+        greater_than: "should be greater than %{count}"
+        greater_than_or_equal_to: "should be greater than or equal to %{count}"
+        equal_to: "should be equal to %{count}"
+        less_than: "should be less than %{count}"
+        less_than_or_equal_to: "should be less than or equal to %{count}"
+        odd: "should be odd number."
+        even: "should be even number."

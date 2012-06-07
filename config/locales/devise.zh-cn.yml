@@ -1,6 +1,6 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
-zh-CN:
+zh-cn:
   errors:
     messages:
       expired: "已过期，请重新请求"
@@ -53,3 +53,48 @@ zh-CN:
         subject: '重置密码信息'
       unlock_instructions:
         subject: '解锁信息'
+    views:
+      commons:
+        sidebar:
+          title: '选项'
+      links:
+        sign_in: '登录'
+        sign_up: '注册'
+        forget_pass: '忘记了密码？'
+        resend_confirmation: '没有收到激活邮件？'
+        resend_unlock: '没有收到解锁邮件？'
+        omni_auth: '使用%{provider}帐号登录'
+      confirmations:
+        new:
+          title: '重新发送激活邮件'
+          submit: '重新发送激活邮件'
+      passwords:
+        edit:
+          title: '修改密码'
+          submit: '修改'
+        new:
+          title: '忘记密码'
+          submit: '发送重置邮件'
+      registrations:
+        edit:
+          title: '修改注册信息'
+          submit: '修改'
+          change_pass_tip: '如果不想修改密码，请不要填写'
+        new:
+          title: '注册'
+          submit: '注册'
+      sessions:
+        new:
+          title: '登录'
+          submit: '登录'
+          remember_me: '记住我'
+      unlocks:
+        new:
+          title: '重新发送解锁邮件'
+          submit: '重新发送解锁邮件'
+    navigation:
+      sign_in: '登录'
+      sign_up: '注册'
+      sign_out: '登出'
+      change_password: '修改密码'
+      change_registration: '修改注册信息'

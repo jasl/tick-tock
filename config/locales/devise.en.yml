@@ -55,3 +55,48 @@ en:
         subject: 'Reset password instructions'
       unlock_instructions:
         subject: 'Unlock Instructions'
+    views:
+      commons:
+        sidebar:
+          title: 'Operations'
+      links:
+        sign_in: 'Sign in'
+        sign_up: 'Sign up'
+        forget_pass: 'Forgot your password?'
+        resend_confirmation: "Didn't receive confirmation instructions?"
+        resend_unlock: "Didn't receive unlock instructions?"
+        omni_auth: "Sign in with %{provider}"
+      confirmations:
+        new:
+          title: 'Resend confirmation instructions'
+          submit: 'Resend confirmation email'
+      passwords:
+        edit:
+          title: 'Change password'
+          submit: 'Change'
+        new:
+          title: 'Forget password'
+          submit: 'Send reset email'
+      registrations:
+        edit:
+          title: 'Change registration information'
+          submit: 'Change'
+          change_pass_tip: "leave blank if you don't want to change it"
+        new:
+          title: 'Sign up'
+          submit: 'Sign up'
+      sessions:
+        new:
+          title: 'Sign in'
+          submit: 'Sign in'
+          remember_me: 'remember me'
+      unlocks:
+        new:
+          title: 'Resend unlock instructions'
+          submit: 'Resend unlock email'
+    navigation:
+      sign_in: 'Sign in'
+      sign_up: 'Sign up'
+      sign_out: 'Sign out'
+      change_password: 'Change password'
+      change_registration: 'Change registration'
