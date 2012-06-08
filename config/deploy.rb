@@ -43,7 +43,7 @@ namespace :deploy do
   task :start, :roles => :app do
     run "cd #{current_path} && find -exec chown #{runner} {} \\;"
     run "cd #{current_path}/log && find -exec chown #{runner} {} \\;"
-    run "cd #{current_path} && bundle exec unicorn -c config/unicorn.rb -E #{rails_env} -D"
+    run "cd #{current_path} && bundle exec unicorn_rails -c config/unicorn.rb -E #{rails_env} -D"
   end
 
   desc "Stop unicorn"
@@ -63,7 +63,7 @@ namespace :deploy do
     run "cd #{current_path}/log && find -exec chown #{runner} {} \\;"
     run "if [ -e #{unicorn_pidfile} ] ; then kill -QUIT `cat #{unicorn_pidfile}` ; fi"
     sleep 1
-    run "cd #{current_path} && bundle exec unicorn -c config/unicorn.rb -E #{rails_env} -D"
+    run "cd #{current_path} && bundle exec unicorn_rails -c config/unicorn.rb -E #{rails_env} -D"
   end
 end
 
