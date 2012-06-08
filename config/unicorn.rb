@@ -1,5 +1,5 @@
 rails_env = ENV['RAILS_ENV'] || 'production'
-app_path = "/home/www/tick-tock"
+app_path = "/home/www/tick-tock/current"
 
 worker_processes 2
 working_directory app_path
