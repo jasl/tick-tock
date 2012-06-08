@@ -1,65 +1,63 @@
 # Encoding: utf-8
-
-set :user,    "root"
-set :appname, "tick-tock"
-
-require "capistrano/af83"
-load "af83/info"
-
-# Use the capistrano rules for precompiling assets with the Rails assets
-# pipeline on deploys.
-# set :public_children, %w(images)
-load "deploy/assets"
-# OR you can choose our improved version of this task:
-# load "af83/deploy/assets"
-
-# load "af83/thin"
-load "af83/unicorn"
-
-# load "af83/custom_maintenance_page"
-# load "af83/es"
-load "af83/mongoid"
-# load "af83/database"
-# load "af83/resque"
-# load "af83/js_routes"
-
-#require "bundler/capistrano"
-$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
+require "capistrano_colors"
+require "sushi/ssh"
+require "bundler/capistrano"
 require "rvm/capistrano"
+
+# Set remote server user
+set :user, "root"
+
+# Fix RVM
+$:.unshift(File.expand_path('./lib', ENV['rvm_path']))
 
 default_run_options[:pty] = true
 
-set :application, "116.255.196.14:2212"
+set :application, "tick-tock"
 set :repository,  "https://github.com/jasl/tick-tock.git"
 set :scm, :git
 set :branch, "master"
 ssh_options[:forward_agent] = true
 
-set :deploy_to, "/var/www/#{appname}/"
+set :deploy_to, "/var/www/#{application}/"
 set :use_sudo, false
 # set :copy_exclude, %w".git spec"
 
 set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :system
-#role :web, "tick-tock.net"                          # Your HTTP server, Apache/etc
-#role :app, "tick-tock.net"                          # This may be the same as your `Web` server
-#role :db,  "tick-tock.net", :primary => true # This is where Rails migrations will run
-# role :db,  "your slave db-server here"
 
 server "116.255.196.14:2212", :app, :web, :db, :primary => true
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+namespace :mongoid do
+  desc "Create MongoDB indexes"
+  task :index do
+    run "cd #{current_path} && #{bundle_cmd} exec rake db:mongoid:create_indexes", :once => true
+  end
+  after "deploy:update", "mongoid:index"
+end
 
-# if you're still using the script/reaper helper you will need
-# these http://github.com/rails/irs_process_scripts
+depend :remote, :command, "bundle"
 
-# If you are using Passenger mod_rails uncomment this:
-# namespace :deploy do
-#   task :start do ; end
-#   task :stop do ; end
-#   task :restart, :roles => :app, :except => { :no_release => true } do
-#     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-#   end
-# end
+namespace :deploy do
+  desc "Start unicorn"
+  task :start, :roles => :app do
+    run "cd #{current_path} && #{bundle_cmd} exec unicorn -c config/unicorn.rb -E #{rails_env} -D"
+  end
 
+  desc "Stop unicorn"
+  task :stop, :roles => :app do
+    set :unicorn_pidfile, "#{shared_path}/pids/unicorn.pid"
+    run "if [ -e #{unicorn_pidfile} ] ; then kill -QUIT `cat #{unicorn_pidfile}` ; fi"
+  end
+
+  desc "Restart unicorn"
+  task :restart, :roles => :app  do
+    set :unicorn_pid, capture("cat #{shared_path}/pids/unicorn.pid").chomp
+    run "kill -USR2 #{unicorn_pid}"
+    sleep 1
+    run "kill -QUIT #{unicorn_pid}"
+  end
+end
+
+#task :deploy, :hosts => "root@116.255.196.14:2212" do
+#  run "ls -x1 /usr/lib | grep -i xml"
+#end
