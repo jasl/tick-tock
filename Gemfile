@@ -30,8 +30,9 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
+
+  gem 'therubyracer', :platform => :ruby
 end
-gem 'therubyracer', :platform => :ruby
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
@@ -43,13 +44,10 @@ gem 'therubyracer', :platform => :ruby
 gem 'unicorn'
 
 # Deploy with Capistrano
-
+gem 'capistrano'
+gem 'rvm-capistrano'
+# gem 'capistrano-af83'
 
 group :development do
-  gem 'capistrano'
-  # gem 'capistrano-af83'
-  gem 'rvm-capistrano'
   # gem 'ruby-debug19', :require => 'ruby-debug'
 end
-# To use debugger
-#
