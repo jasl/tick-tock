@@ -16,7 +16,8 @@ gem 'devise'
 gem 'omniauth'
 
 # UI
-gem 'twitter-bootstrap-rails'
+gem 'bootstrap-sass'
+gem 'bootswatch-rails'
 gem 'jquery-rails'
 
 # Upload
