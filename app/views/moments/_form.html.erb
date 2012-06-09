@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_for(@moment, :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
+  <%= form_for @moment, :html => {:method => :post, :class => 'form-horizontal'} do |f| %>
     <fieldset>
       <legend>新的点滴</legend>
       <div class="row row-grid">
@@ -7,13 +7,28 @@
           <%= print_error_messages @moment %>
         </div>
       </div>
-      <div class="control-group">
-        <%= f.label :body, :class => 'control-label' %>
-        <div class="controls">
-          <%= f.text_field :body, :class => 'input-large' %>
+
+      <div>
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#note" data-toggle="tab">Note</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div id="note">
+            <%= f.fields_for :note do |builder| %>
+              <div class="control-group">
+                <%= builder.label :body, :class => 'control-label' %>
+                <div class="controls">
+                  <%= builder.text_area :body, :size => '20x5', :class => 'input-large' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
-      <div class="form-actions" >
+
+      <div class="form-actions">
         <%= f.submit '保存', :class => 'btn btn-primary' %>
       </div>
     </fieldset>

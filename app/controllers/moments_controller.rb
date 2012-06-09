@@ -28,6 +28,7 @@ class MomentsController < ApplicationController
   # GET /moments/new.json
   def new
     @moment = Moment.new
+    @moment.build_note
 
     respond_to do |format|
       format.html # new.html.erb

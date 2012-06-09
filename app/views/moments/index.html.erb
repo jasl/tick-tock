@@ -12,7 +12,7 @@
   <tbody>
   <% @moments.each do |moment| %>
     <tr>
-      <td><%= moment.body %></td>
+      <td><%= moment.note.body %></td>
       <td><%= moment.created_at %></td>
       <td><%= link_to 'Show', moment %></td>
       <td><%= link_to 'Edit', edit_moment_path(moment) %></td>

@@ -6,8 +6,10 @@ class Moment
 
   belongs_to :user
 
-  field :body, :type => String
+  embeds_one :note
+  validates_associated :note
+  accepts_nested_attributes_for :note
 
-  attr_accessible :body
+  attr_accessible :note
 
 end

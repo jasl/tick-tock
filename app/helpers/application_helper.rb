@@ -1,6 +1,6 @@
 module ApplicationHelper
   def parent_layout(layout)
-    @view_flow.set(:layout,output_buffer)
+    @view_flow.set(:layout, output_buffer)
     self.output_buffer = render(:file => "layouts/#{layout}")
   end
 
@@ -13,7 +13,7 @@ module ApplicationHelper
 
     html = <<-HTML
     <div class="alert alert-error">
-      <a class="close" data-dismiss="alert">x</a>
+      <a class="close" data-dismiss="alert"><i class="icon-remove"></i></a>
       <strong>#{sentence}</strong>
       <ul>
         #{messages}
@@ -27,9 +27,16 @@ module ApplicationHelper
   def notice_message
     flash_messages = []
     flash.each do |type, message|
-      type = :success if type == :notice
-      text = content_tag(:div, link_to("x", "#", :class => "close", "data-dismiss" => "alert") + message, :class => "alert fade in alert-#{type}")
-      flash_messages << text if message
+      if message
+        type = :success if type == :notice
+        html = <<-HTML
+        <div class=\"alert fade in alert-#{type}\">
+          <a class="close" data-dismiss="alert"><i class="icon-remove"></i></a>
+          #{message}
+        </div>
+        HTML
+        flash_messages << html
+      end
     end
     flash_messages.join("\n").html_safe
   end
