@@ -10,6 +10,6 @@ class Moment
   validates_associated :note
   accepts_nested_attributes_for :note
 
-  attr_accessible :note
+  attr_accessible :note_attributes
 
 end
