@@ -27,7 +27,4 @@ TickTock::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-
-  config.assets.js_compressor  = :therubyracer
-  config.assets.css_compressor = :less
 end
