@@ -39,10 +39,10 @@
           </ul>
           <ul class="nav pull-right">
             <% unless user_signed_in? %>
-              <li <%= 'class=active' if current_page?(:controller => 'registrations', :action => 'new') %>>
+              <li <%= 'class=active' if current_page? new_user_registration_path %>>
                 <%= link_to t('devise.navigation.sign_up'), new_user_registration_path %>
               </li>
-              <li <%= 'class=active' if current_page?(:controller => 'sessions', :action => 'new') %>>
+              <li <%= 'class=active' if current_page? new_user_session_path %>>
                 <%= link_to t('devise.navigation.sign_in'), new_user_session_path %>
               </li>
             <% else %>
