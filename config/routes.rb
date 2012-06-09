@@ -2,7 +2,8 @@ TickTock::Application.routes.draw do
   get "home/index"
   root :to => 'home#index'
 
-  devise_for :users, skip: :registrations do
+  devise_for :users
+  devise_scope :users do
     resource :registration,
              only: [:new, :create, :edit, :update],
              path: 'users',

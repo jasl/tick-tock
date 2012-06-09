@@ -4,6 +4,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
+require "mongoid/railtie"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -14,6 +15,7 @@ end
 
 module TickTock
   class Application < Rails::Application
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
@@ -44,5 +46,7 @@ module TickTock
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.mongoid.persist_in_safe_mode = true
   end
 end
