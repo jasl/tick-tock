@@ -8,14 +8,13 @@
         </div>
       </div>
 
-      <div>
+      <div class="tabbable">
         <ul class="nav nav-tabs">
-          <li class="active">
-            <a href="#note" data-toggle="tab">Note</a>
-          </li>
+          <li class="active"><a href="#note" data-toggle="tab">Note</a></li>
+          <li><a href="#photo" data-toggle="tab">Photo</a></li>
         </ul>
         <div class="tab-content">
-          <div id="note">
+          <div class="tab-pane active" id="note">
             <%= f.fields_for :note do |builder| %>
               <div class="control-group">
                 <%= builder.label :body, :class => 'control-label' %>
@@ -24,6 +23,9 @@
                 </div>
               </div>
             <% end %>
+          </div>
+          <div class="tab-pane" id="photo">
+            <p>NYI yet :-)</p>
           </div>
         </div>
       </div>
