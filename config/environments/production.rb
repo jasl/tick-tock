@@ -21,7 +21,7 @@ TickTock::Application.configure do
   config.assets.digest = true
 
   config.assets.js_compressor  = :uglifier
-  config.assets.css_compressor = :scss
+  config.assets.css_compressor = :less
 
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH

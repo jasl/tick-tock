@@ -1,5 +1,7 @@
 class User
   include Mongoid::Document
+  include Mongoid::Paranoia
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -39,6 +41,6 @@ class User
   # field :authentication_token, :type => String
 
   ## User attributions
-  field :name,							 :type => String, :null => false, :default => ""
-
+  field :name, :type => String, :null => false, :default => ""
+  has_many :Moment
 end

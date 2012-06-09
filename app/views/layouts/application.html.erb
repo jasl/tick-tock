@@ -28,11 +28,14 @@
           <span class="icon-bar"></span>
         </a>
 
-        <a class="brand" href="#">TickTock</a>
+        <a class="brand" href="/">点滴</a>
 
         <div class="nav-collapse">
           <ul class="nav">
-            <li class="active"><a href="/">Test</a></li>
+            <% if user_signed_in? %>
+              <li><a href="<%= moments_path %>">我的点滴墙</a></li>
+              <li><a href="<%= new_moment_path %>">新的点滴</a></li>
+            <% end %>
           </ul>
           <ul class="nav pull-right">
             <% unless user_signed_in? %>
@@ -46,6 +49,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <%= (current_user.name.blank?) ? current_user.email : current_user.name %>
+                  <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to(t('devise.navigation.change_registration'),edit_user_registration_path) %></li>
@@ -66,7 +70,15 @@
 
     <footer class="footer">
       <hr />
-      <p>&copy; Jasl 2012</p>
+      <div class="pull-left" style="margin: 0 10px 0 10px;">
+        <%= image_tag 'rails.png', :width => 30 %>
+      </div>
+      <div>
+        <p>
+          Created by &copy;Jasl 2012<br/>
+          Based on rails 3.2
+        </p>
+      </div>
     </footer>
   </div>
 

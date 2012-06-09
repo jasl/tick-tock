@@ -1,0 +1,21 @@
+<div class="container">
+  <%= form_for(@moment, :html => { :method => :post, :class => 'form-horizontal' }) do |f| %>
+    <fieldset>
+      <legend>新的点滴</legend>
+      <div class="row row-grid">
+        <div class="span6 offset1">
+          <%= print_error_messages @moment %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :body, :class => 'control-label' %>
+        <div class="controls">
+          <%= f.text_field :body, :class => 'input-large' %>
+        </div>
+      </div>
+      <div class="form-actions" >
+        <%= f.submit '保存', :class => 'btn btn-primary' %>
+      </div>
+    </fieldset>
+  <% end %>
+</div>

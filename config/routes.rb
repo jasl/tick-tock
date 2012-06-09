@@ -1,4 +1,6 @@
 TickTock::Application.routes.draw do
+  resources :moments
+
   get "home/index"
   root :to => 'home#index'
 

@@ -1,0 +1,23 @@
+<h1>所有点滴</h1>
+<table class="table">
+  <thead>
+  <tr>
+    <th style="width: 60%">内容</th>
+    <th>时间</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @moments.each do |moment| %>
+    <tr>
+      <td><%= moment.body %></td>
+      <td><%= moment.created_at %></td>
+      <td><%= link_to 'Show', moment %></td>
+      <td><%= link_to 'Edit', edit_moment_path(moment) %></td>
+      <td><%= link_to 'Destroy', moment, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

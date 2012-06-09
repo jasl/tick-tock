@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Body:</b>
+  <%= @moment.body %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%= @moment.created_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_moment_path(@moment) %> |
+<%= link_to 'Back', moments_path %>
