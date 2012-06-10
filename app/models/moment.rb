@@ -32,7 +32,7 @@ class Moment
           self.type = type
           flag = false
         else
-          self.send(type).destroy
+          self.send("#{type}=", nil)
         end
       end
       flag
