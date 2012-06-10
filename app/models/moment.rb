@@ -20,6 +20,7 @@ class Moment
   index :user_id
 
   before_save :clean_embeds_one_obj
+  before_update :clean_not_use_embeds_one_obj
   after_validation :even_error_messages
   after_build :complete_type
 
@@ -41,7 +42,13 @@ class Moment
 
   def clean_embeds_one_obj
     TYPES.each do |type|
-      self.send(type).destroy unless self.send(type).nil? or self.send(type).filled?
+      self.send("#{type}=", nil) unless self.send(type).nil? or self.send(type).filled?
+    end
+  end
+
+  def clean_not_use_embeds_one_obj
+    TYPES.each do |type|
+      self.send("#{type}=", nil) unless type == self.type
     end
   end
 
@@ -53,8 +60,9 @@ class Moment
     else
       self.send(flag).errors.each{ |attr,msg| self.errors.add(attr, msg)}
     end
+
     TYPES.each do |type|
-      self.send "build_#{type}" if type != flag
+      self.send "build_#{type}" if type != flag and self.new?
       self.errors.delete type unless self.errors.nil?
     end
 
