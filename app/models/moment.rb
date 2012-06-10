@@ -62,7 +62,7 @@ class Moment
     end
 
     TYPES.each do |type|
-      self.send "build_#{type}" if type != flag and self.new?
+      self.send "build_#{type}" if type != flag and self.new_record?
       self.errors.delete type unless self.errors.nil?
     end
 

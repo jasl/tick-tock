@@ -5,7 +5,7 @@ class Photo
 
   validates :body, :presence => true, :length => 4..10
 
-  embedded_in :moment, :inverse_of => :note
+  embedded_in :moment, :inverse_of => :photo
 
   def filled?
     self.body.blank? ? false : true

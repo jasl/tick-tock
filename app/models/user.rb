@@ -47,5 +47,6 @@ class User
   validates :name, :presence => true
 
   has_many :moments
+  index :moments
 
 end
