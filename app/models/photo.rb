@@ -1,4 +1,4 @@
-class Note
+class Photo
   include Mongoid::Document
 
   field :body, :type => String, :null => false, :autosave => true

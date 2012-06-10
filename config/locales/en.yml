@@ -2,4 +2,12 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  errors:
+      moment:
+        must_complete_one: 'must complete one item.'
+        choose_type: 'invalid type'
+  views:
+      moment:
+        type:
+          note: 'Note'
+          photo: 'Photo'

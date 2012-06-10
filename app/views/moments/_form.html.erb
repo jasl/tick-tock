@@ -1,5 +1,5 @@
 <div class="container">
-  <%= form_for @moment, :html => {:method => :post, :class => 'form-horizontal'} do |f| %>
+  <%= form_for @moment, :html => { :class => 'form-horizontal'} do |f| %>
     <fieldset>
       <legend>新的点滴</legend>
       <div class="row row-grid">
@@ -10,23 +10,39 @@
 
       <div class="tabbable">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#note" data-toggle="tab">Note</a></li>
-          <li><a href="#photo" data-toggle="tab">Photo</a></li>
+          <% if @moment.type.nil? %>
+            <li class="active"><a href="#note" data-toggle="tab"><%= t("views.moment.type.note") %></a></li>
+            <li><a href="#photo" data-toggle="tab"><%= t("views.moment.type.photo") %></a></li>
+          <% else %>
+            <li class="active"><a href="#<%= @moment.type %>" data-toggle="tab"><%= t("views.moment.type.#{@moment.type}") %></a></li>
+          <% end %>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane active" id="note">
-            <%= f.fields_for :note do |builder| %>
-              <div class="control-group">
-                <%= builder.label :body, :class => 'control-label' %>
-                <div class="controls">
-                  <%= builder.text_area :body, :size => '20x5', :class => 'input-large' %>
+          <% if @moment.type.nil? or @moment.type == :note %>
+            <div class="tab-pane<%= " active" if @moment.type.nil? or @moment.type == :note %>" id="note">
+              <%= f.fields_for :note do |builder| %>
+                <div class="control-group">
+                  <%= builder.label :body, :class => 'control-label' %>
+                  <div class="controls">
+                    <%= builder.text_area :body, :size => '20x5', :class => 'input-large' %>
+                  </div>
                 </div>
-              </div>
-            <% end %>
-          </div>
-          <div class="tab-pane" id="photo">
-            <p>NYI yet :-)</p>
-          </div>
+              <% end %>
+            </div>
+          <% end %>
+          <% if @moment.type.nil? or @moment.type == :photo %>
+            <div class="tab-pane<%= " active" unless @moment.type.nil? or @moment.type == :note %>" id="photo">
+              <p>NYI yet :-)</p>
+              <%= f.fields_for :photo do |builder| %>
+                <div class="control-group">
+                  <%= builder.label :body, :class => 'control-label' %>
+                  <div class="controls">
+                    <%= builder.text_area :body, :size => '20x5', :class => 'input-large' %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
 

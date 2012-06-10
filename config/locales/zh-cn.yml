@@ -2,4 +2,12 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 zh-cn:
-  hello: "Hello world"
+  errors:
+    moment:
+      must_complete_one: '必须填写一项。'
+      choose_type: '非法的类型'
+  views:
+    moment:
+      type:
+        note: '随笔'
+        photo: '照片'

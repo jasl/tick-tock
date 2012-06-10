@@ -29,6 +29,7 @@ class MomentsController < ApplicationController
   def new
     @moment = Moment.new
     @moment.build_note
+    @moment.build_photo
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,7 +39,7 @@ class MomentsController < ApplicationController
 
   # GET /moments/1/edit
   def edit
-    @moment = Moment.find(params[:id])
+    @moment = Moment.where(user_id: current_user.id).find(params[:id])
   end
 
   # POST /moments
@@ -46,6 +47,13 @@ class MomentsController < ApplicationController
   def create
     @moment = Moment.new(params[:moment])
     @moment.user = current_user
+
+    types = []
+    params[:moment].each {|key, value| types<</(\w+)_attributes/.match(key).captures[0].to_sym if value.class == ActiveSupport::HashWithIndifferentAccess}
+    types.each do |type|
+      @moment.send("build_#{type}") if @moment.send(type).nil?
+      @moment.type = type if @moment.send(type).filled?
+    end
 
     respond_to do |format|
       if @moment.save
