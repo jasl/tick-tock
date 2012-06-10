@@ -2,7 +2,7 @@ class User
   include Mongoid::Document
   include Mongoid::Paranoia
 
-  include Redis::Objects
+  # include Redis::Objects
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
@@ -47,7 +47,4 @@ class User
   validates :name, :presence => true
   has_many :Moment
 
-  def moments
-
-  end
 end
