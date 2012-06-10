@@ -16,7 +16,7 @@ class MomentsController < ApplicationController
   # GET /moments/1
   # GET /moments/1.json
   def show
-    @moment = Moment.where(user_id: current_user.id).find(params[:id])
+    @moment = current_user.Moment.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -39,14 +39,13 @@ class MomentsController < ApplicationController
 
   # GET /moments/1/edit
   def edit
-    @moment = Moment.where(user_id: current_user.id).find(params[:id])
+    @moment = current_user.Moment.find(params[:id])
   end
 
   # POST /moments
   # POST /moments.json
   def create
-    @moment = Moment.new(params[:moment])
-    @moment.user = current_user
+    @moment = current_user.Moment.build params[:moment]
 
     types = []
     params[:moment].each {|key, value| types<</(\w+)_attributes/.match(key).captures[0].to_sym if value.class == ActiveSupport::HashWithIndifferentAccess}
@@ -74,7 +73,7 @@ class MomentsController < ApplicationController
   # PUT /moments/1
   # PUT /moments/1.json
   def update
-    @moment = Moment.where(user_id: current_user.id).find(params[:id])
+    @moment = current_user.Moment.find(params[:id])
 
     respond_to do |format|
       if @moment.update_attributes(params[:moment])
@@ -90,7 +89,7 @@ class MomentsController < ApplicationController
   # DELETE /moments/1
   # DELETE /moments/1.json
   def destroy
-    @moment = Moment.where(user_id: current_user.id).find(params[:id])
+    @moment = current_user.Moment.find(params[:id])
     @moment.destroy
 
     respond_to do |format|

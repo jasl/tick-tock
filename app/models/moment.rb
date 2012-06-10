@@ -18,6 +18,7 @@ class Moment
   after_validation :even_error_messages
 
   belongs_to :user
+  index :user_id
 
   before_save :clean_embeds_one_obj
 
@@ -30,12 +31,14 @@ class Moment
   end
 
   def even_error_messages
-    flag = nil
-    [:note, :photo].each do |type|
-      if flag
-        self.send(type).blank!
-      else
-        flag = type if not self.send(type).nil? and self.send(type).filled?
+    flag =  self.type
+    if flag.nil?
+      [:note, :photo].each do |type|
+        if flag
+          self.send(type).blank!
+        else
+          flag = type if not self.send(type).nil? and self.send(type).filled?
+        end
       end
     end
 

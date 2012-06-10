@@ -14,4 +14,9 @@ class Note
   def blank!
     self.body = nil
   end
+
+  private
+
+  def identify
+  end
 end

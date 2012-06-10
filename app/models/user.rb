@@ -2,6 +2,8 @@ class User
   include Mongoid::Document
   include Mongoid::Paranoia
 
+  include Redis::Objects
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -44,4 +46,8 @@ class User
   field :name, :type => String, :null => false, :default => ""
   validates :name, :presence => true
   has_many :Moment
+
+  def moments
+
+  end
 end
