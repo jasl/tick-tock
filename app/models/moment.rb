@@ -19,7 +19,15 @@ class Moment
 
   belongs_to :user
 
+  before_save :clean_embeds_one_obj
+
   private
+
+  def clean_embeds_one_obj
+    [:note, :photo].each do |type|
+      self.send(type).destroy unless self.send(type).nil? or self.send(type).filled?
+    end
+  end
 
   def even_error_messages
     flag = nil
@@ -41,6 +49,6 @@ class Moment
       self.errors.add(:moment, I18n.t('errors.moment.must_complete_one'))
     end
 
-    self.errors.delete :type
+    #self.errors.delete :type
   end
 end

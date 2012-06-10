@@ -50,9 +50,14 @@ class MomentsController < ApplicationController
 
     types = []
     params[:moment].each {|key, value| types<</(\w+)_attributes/.match(key).captures[0].to_sym if value.class == ActiveSupport::HashWithIndifferentAccess}
-    types.each do |type|
+    types.each.inject(true) do |flag,type|
       @moment.send("build_#{type}") if @moment.send(type).nil?
-      @moment.type = type if @moment.send(type).filled?
+
+      if @moment.send(type).filled? and flag
+        @moment.type = type
+        flag = false
+      end
+      flag
     end
 
     respond_to do |format|
