@@ -27,4 +27,4 @@ test:
 production:
   <<: *default
   host: localhost
-  database: tick_tock_test
+  database: tick_tock
