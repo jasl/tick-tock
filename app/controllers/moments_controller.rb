@@ -5,7 +5,7 @@ class MomentsController < ApplicationController
   # GET /moments
   # GET /moments.json
   def index
-    @moments = current_user.Moment
+    @moments = current_user.moments
 
     respond_to do |format|
       format.html # index.html.erb
@@ -16,7 +16,7 @@ class MomentsController < ApplicationController
   # GET /moments/1
   # GET /moments/1.json
   def show
-    @moment = current_user.Moment.find(params[:id])
+    @moment = current_user.moments.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -39,25 +39,13 @@ class MomentsController < ApplicationController
 
   # GET /moments/1/edit
   def edit
-    @moment = current_user.Moment.find(params[:id])
+    @moment = current_user.moments.find(params[:id])
   end
 
   # POST /moments
   # POST /moments.json
   def create
-    @moment = current_user.Moment.build params[:moment]
-
-    types = []
-    params[:moment].each {|key, value| types<</(\w+)_attributes/.match(key).captures[0].to_sym if value.class == ActiveSupport::HashWithIndifferentAccess}
-    types.each.inject(true) do |flag,type|
-      @moment.send("build_#{type}") if @moment.send(type).nil?
-
-      if @moment.send(type).filled? and flag
-        @moment.type = type
-        flag = false
-      end
-      flag
-    end
+    @moment = current_user.moments.build params[:moment]
 
     respond_to do |format|
       if @moment.save
@@ -73,7 +61,7 @@ class MomentsController < ApplicationController
   # PUT /moments/1
   # PUT /moments/1.json
   def update
-    @moment = current_user.Moment.find(params[:id])
+    @moment = current_user.moments.find(params[:id])
 
     respond_to do |format|
       if @moment.update_attributes(params[:moment])
@@ -89,7 +77,7 @@ class MomentsController < ApplicationController
   # DELETE /moments/1
   # DELETE /moments/1.json
   def destroy
-    @moment = current_user.Moment.find(params[:id])
+    @moment = current_user.moments.find(params[:id])
     @moment.destroy
 
     respond_to do |format|

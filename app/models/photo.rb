@@ -3,7 +3,7 @@ class Photo
 
   field :body, :type => String, :null => false, :autosave => true
 
-  validates :body, :presence => true
+  validates :body, :presence => true, :length => 4..10
 
   embedded_in :moment, :inverse_of => :note
 

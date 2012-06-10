@@ -4,52 +4,58 @@ class Moment
   include Mongoid::Timestamps
   # include Mongoid::Paranoia
 
+  TYPES = [:note, :photo]
+
   field :type, :type => Symbol, :null => false
-  validates_inclusion_of :type, :in => [:note, :photo], :message => I18n.t('errors.moment.choose_type')
+  validates_inclusion_of :type, :in => TYPES #, :message => I18n.t('errors.moment.choose_type')
 
-  embeds_one :note, validate: false
+  embeds_one :note, validate: true
   accepts_nested_attributes_for :note, :reject_if => ->(attrs){ attrs[:body].blank?}
-
-  embeds_one :photo, validate: false
+  embeds_one :photo, validate: true
   accepts_nested_attributes_for :photo, :reject_if => ->(attrs){ attrs[:body].blank? }
 
   attr_accessible :note_attributes, :photo_attributes
-
-  after_validation :even_error_messages
 
   belongs_to :user
   index :user_id
 
   before_save :clean_embeds_one_obj
+  after_validation :even_error_messages
+  after_build :complete_type
 
   private
 
+  def complete_type
+    TYPES.each.inject(true) do |flag, type|
+      unless self.send(type).nil?
+        if flag
+          self.type = type
+          flag = false
+        else
+          self.send(type).destroy
+        end
+      end
+      flag
+    end
+  end
+
   def clean_embeds_one_obj
-    [:note, :photo].each do |type|
+    TYPES.each do |type|
       self.send(type).destroy unless self.send(type).nil? or self.send(type).filled?
     end
   end
 
   def even_error_messages
-    flag =  self.type
+    flag = self.type
+
     if flag.nil?
-      [:note, :photo].each do |type|
-        if flag
-          self.send(type).blank!
-        else
-          flag = type if not self.send(type).nil? and self.send(type).filled?
-        end
-      end
-    end
-
-    if flag
-      unless self.errors[:moment].nil?
-        self.send(flag).errors.each{ |attr,msg| self.errors.add(attr, msg)}
-
-        #self.errors.delete :moment
-      end
-    else
       self.errors.add(:moment, I18n.t('errors.moment.must_complete_one'))
+    else
+      self.send(flag).errors.each{ |attr,msg| self.errors.add(attr, msg)}
+    end
+    TYPES.each do |type|
+      self.send "build_#{type}" if type != flag
+      self.errors.delete type unless self.errors.nil?
     end
 
     self.errors.delete :type
