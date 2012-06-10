@@ -5,7 +5,7 @@ en:
   errors:
       moment:
         must_complete_one: 'must complete one item.'
-        choose_type: 'invalid type'
+        choose_type: 'invalid type.'
   views:
       moment:
         type:

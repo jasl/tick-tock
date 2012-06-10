@@ -49,6 +49,6 @@ class Moment
       self.errors.add(:moment, I18n.t('errors.moment.must_complete_one'))
     end
 
-    #self.errors.delete :type
+    self.errors.delete :type
   end
 end
