@@ -7,7 +7,9 @@ zh-cn:
       not_found: "未找到"
       already_confirmed: "已经确认，请尝试登录"
       not_locked: "已经被锁定"
-      not_saved: "有%{count}个错误发生导致操作失败："
+      not_saved:
+        one: "有1个错误信息导致操作失败："
+        other: "有%{count}个错误信息导致操作失败："
 
   devise:
     failure:

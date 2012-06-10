@@ -42,5 +42,6 @@ class User
 
   ## User attributions
   field :name, :type => String, :null => false, :default => ""
+  validates :name, :presence => true
   has_many :Moment
 end
