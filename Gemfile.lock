@@ -1,8 +1,8 @@
 GIT
   remote: git://github.com/seyhunak/twitter-bootstrap-rails.git
-  revision: eafd20876b5787da3a21adba73e148dc73d381d6
+  revision: 34c2d3fcb7e8d721eb8f81ef7ce0ce34ac7b3e68
   specs:
-    twitter-bootstrap-rails (2.0.9)
+    twitter-bootstrap-rails (2.1.0)
       actionpack (>= 3.1)
       less-rails (~> 2.2.2)
       railties (>= 3.1)
@@ -121,6 +121,8 @@ GEM
       rack
     orm_adapter (0.0.7)
     polyglot (0.3.3)
+    quiet_assets (1.0.1)
+      railties (~> 3.1)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -196,6 +198,7 @@ DEPENDENCIES
   mongoid_colored_logger
   mongoid_rails_migrations
   omniauth
+  quiet_assets
   rails (~> 3.2.3)
   rails-i18n
   rvm-capistrano

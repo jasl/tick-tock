@@ -7,14 +7,13 @@ class Moment
   TYPES = [:note, :photo]
 
   field :type, :type => Symbol, :null => false
-  validates_inclusion_of :type, :in => TYPES #, :message => I18n.t('errors.moment.choose_type')
+  validates_inclusion_of :type, :in => TYPES
 
-  embeds_one :note, validate: true
-  accepts_nested_attributes_for :note, :reject_if => ->(attrs){ attrs[:body].blank?}
-  embeds_one :photo, validate: true
-  accepts_nested_attributes_for :photo, :reject_if => ->(attrs){ attrs[:body].blank? }
-
-  attr_accessible :note_attributes, :photo_attributes
+  TYPES.each do |type|
+    embeds_one type, validate: true
+    accepts_nested_attributes_for type
+    attr_accessible "#{type}_attributes".to_sym
+  end
 
   belongs_to :user
   index :user_id
@@ -26,16 +25,14 @@ class Moment
   private
 
   def complete_type
-    TYPES.each.inject(true) do |flag, type|
+    TYPES.each do |type|
       unless self.send(type).nil?
-        if flag
+        if self.type.nil? and self.send(type).filled?
           self.type = type
-          flag = false
         else
           self.send("#{type}=", nil)
         end
       end
-      flag
     end
   end
 
