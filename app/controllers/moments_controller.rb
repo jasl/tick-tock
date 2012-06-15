@@ -8,10 +8,11 @@ class MomentsController < ApplicationController
 
     total_moments = current_user.moments.length
     if total_moments <= Settings['moments_on_wall']
-      @moments = current_user.moments.all.shuffle
+      @moments = current_user.moments.all
     else
       random_ids = get_random_numbers(total_moments-1, Settings['moments_on_wall'])
       random_ids.each { |id| @moments<<current_user.moments[id] unless current_user.moments[id].nil? }
+      (@moments.sort_by! { |moment| moment.created_at }).reverse!
     end
 
     respond_to do |format|
