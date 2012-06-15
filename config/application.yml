@@ -1,5 +1,5 @@
 defaults: &defaults
-  version: 'Milestone-2'
+  version: 'Milestone-3'
 
 development:
   <<: *defaults

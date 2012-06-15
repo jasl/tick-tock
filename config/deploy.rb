@@ -21,7 +21,7 @@ ssh_options[:forward_agent] = true
 
 set :deploy_to, "/home/www/#{application}/"
 set :use_sudo, false
-# set :copy_exclude, %w".git spec"
+set :copy_exclude, %w".git spec"
 
 # set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :system
@@ -39,6 +39,15 @@ namespace :mongoid do
     run "cd #{current_path} && bundle exec rake RAILS_ENV=#{rails_env} db:mongoid:drop", :once => true
   end
   after "deploy:update", "mongoid:index"
+end
+
+namespace :demo do
+  desc "Create demo user"
+  task :create do
+    run "cd #{current_path} && bundle exec rake RAILS_ENV=#{rails_env} db:seed", :once => true
+  end
+
+  after "mongoid:index", "demo:create"
 end
 
 depend :remote, :command, "bundle"

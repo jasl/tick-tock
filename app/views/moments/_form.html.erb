@@ -1,6 +1,6 @@
 <% flag = @moment.type.nil? | @moment.new? %>
 <div class="container">
-  <%= form_for @moment, :html => { :class => 'form-horizontal'} do |f| %>
+  <%= form_for @moment, :html => {:class => 'form-horizontal'} do |f| %>
     <fieldset>
       <legend><%= t("views.moment.titles.#{action_name}") %></legend>
       <div class="row row-grid">
@@ -12,37 +12,40 @@
       <div class="tabbable">
         <ul class="nav nav-tabs">
           <% if flag %>
-            <li class="<%= "active" if @moment.type.nil? or @moment.type == :note %>"><a href="#note" data-toggle="tab"><%= t("views.moment.types.note") %></a></li>
-            <li class="<%= "active" if @moment.type == :photo %>"><a href="#photo" data-toggle="tab"><%= t("views.moment.types.photo") %></a></li>
+            <% first_flag = true %>
+            <% @moment.types.each do |type| %>
+              <% if first_flag %>
+                <li class="<%= "active" if @moment.type.nil? or @moment.type == type %>">
+                  <a href="#<%= type %>" data-toggle="tab">
+                    <%= t("views.moment.types.#{type}") %>
+                  </a>
+                </li>
+                <% first_flag = false %>
+              <% else %>
+                <li class="<%= "active" if @moment.type == type %>">
+                  <a href="#<%= type %>" data-toggle="tab">
+                    <%= t("views.moment.types.#{type}") %>
+                  </a>
+                </li>
+              <% end %>
+            <% end %>
           <% else %>
-            <li class="active"><a href="#<%= @moment.type %>" data-toggle="tab"><%= t("views.moment.types.#{@moment.type}") %></a></li>
+            <li class="active">
+              <a href="#<%= @moment.type %>" data-toggle="tab">
+                <%= t("views.moment.types.#{@moment.type}") %>
+              </a>
+            </li>
           <% end %>
         </ul>
         <div class="tab-content">
-          <% if flag or @moment.type == :note %>
-            <div class="tab-pane<%= " active" if @moment.type.nil? or @moment.type == :note %>" id="note">
-              <%= f.fields_for :note do |builder| %>
-                <div class="control-group">
-                  <%= builder.label :body, :class => 'control-label' %>
-                  <div class="controls">
-                    <%= builder.text_area :body, :size => '20x5', :class => 'input-large' %>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
-          <% if flag or @moment.type == :photo %>
-            <div class="tab-pane<%= " active" unless @moment.type.nil? or @moment.type == :note %>" id="photo">
-              <p>NYI yet :-)</p>
-              <%= f.fields_for :photo do |builder| %>
-                <div class="control-group">
-                  <%= builder.label :body, :class => 'control-label' %>
-                  <div class="controls">
-                    <%= builder.text_area :body, :size => '20x5', :class => 'input-large' %>
-                  </div>
-                </div>
-              <% end %>
-            </div>
+          <% first_flag = @moment.type.nil? ? flag : false %>
+          <% @moment.types.each do |type| %>
+            <% if flag or @moment.type == type %>
+              <div class="tab-pane<%= " active" if first_flag or @moment.type == type %>" id="<%= type %>">
+                <%= render :partial => "moments/types/#{type}", :locals => {:f => f, :moment => @moment} %>
+              </div>
+            <% end %>
+            <% first_flag = false if first_flag %>
           <% end %>
         </div>
       </div>

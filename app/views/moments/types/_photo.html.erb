@@ -1,0 +1,9 @@
+<p>NYI yet :-)</p>
+<%= f.fields_for :photo do |builder| %>
+  <div class="control-group">
+    <%= builder.label :body, :class => 'control-label' %>
+    <div class="controls">
+      <%= builder.text_area :body, :size => '20x5', :class => 'input-large' %>
+    </div>
+  </div>
+<% end %>

@@ -4,7 +4,12 @@ class Moment
   include Mongoid::Timestamps
   # include Mongoid::Paranoia
 
-  TYPES = [:note, :photo]
+  # TYPES = [:note, :photo] #disabled photo temporarily until impl it.
+  TYPES = [:note]
+
+  def types
+    TYPES
+  end
 
   field :type, :type => Symbol, :null => false
   validates_inclusion_of :type, :in => TYPES

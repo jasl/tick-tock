@@ -1,7 +1,10 @@
 TickTock::Application.routes.draw do
+
+  match 'moments/all' => 'moments#all', :via => :get, :as => 'moments_all'
   resources :moments
 
-  get "home/index"
+  get "home/index", :as => '/index'
+  match "/about" => 'home#about', :via => :get, :as => 'about'
   root :to => 'home#index'
 
   devise_for :users

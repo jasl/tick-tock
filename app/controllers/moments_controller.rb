@@ -4,10 +4,21 @@ class MomentsController < ApplicationController
   # GET /moments
   # GET /moments.json
   def index
-    @moments = current_user.moments
+    random_ids = get_random_numbers(current_user.moments.length, 20)
+    @moments = []
+    random_ids.each {|id| @moments<<current_user.moments[id]}
 
     respond_to do |format|
       format.html { @page_title = t("views.moment.titles.index") } # index.html.erb
+      format.json { render json: @moments }
+    end
+  end
+
+  def all
+    @moments = current_user.moments.all
+
+    respond_to do |format|
+      format.html { @page_title = t("views.moment.titles.all") } # index.html.erb
       format.json { render json: @moments }
     end
   end
@@ -82,5 +93,16 @@ class MomentsController < ApplicationController
       format.html { redirect_to moments_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def get_random_numbers(max, count)
+    r = []
+    until r.length == count
+      n = rand(max)
+      r<<n unless r.include? n
+    end
+    r
   end
 end

@@ -9,12 +9,17 @@ zh-cn:
     moment:
       titles:
         new: '新的点滴'
+        create: '新的点滴'
         show: '我的点滴'
         edit: '编辑点滴'
+        update: '编辑点滴'
         index: '点滴墙'
+        all: '所有点滴'
       types:
         note: '随笔'
         photo: '照片'
       messages:
         saved: '添加成功。'
         updated: '修改成功。'
+    home:
+      about: '关于点滴'
