@@ -66,6 +66,6 @@ TickTock::Application.configure do
   config.active_support.deprecation = :notify
 
   config.mongoid.preload_models = true
-  config.mongoid.logger = Logger.new($stdout, :info)
+  config.mongoid.logger = Logger::INFO
 
 end
