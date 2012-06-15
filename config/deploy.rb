@@ -31,12 +31,12 @@ server "116.255.196.14:2212", :app, :web, :db, :primary => true
 namespace :mongoid do
   desc "Create MongoDB indexes"
   task :index do
-    run "cd #{current_path} && bundle exec rake db:mongoid:create_indexes RAILS_ENV=#{rails_env} ", :once => true
+    run "cd #{current_path} && bundle exec rake RAILS_ENV=#{rails_env} db:mongoid:create_indexes", :once => true
   end
 
   desc "Clean all data"
   task :drop do
-    run "cd #{current_path} && bundle exec rake db:mongoid:drop RAILS_ENV=#{rails_env}", :once => true
+    run "cd #{current_path} && bundle exec rake RAILS_ENV=#{rails_env} db:mongoid:drop", :once => true
   end
   after "deploy:update", "mongoid:index"
 end
@@ -44,7 +44,7 @@ end
 namespace :demo do
   desc "Create demo user"
   task :create do
-    run "cd #{current_path} && bundle exec rake db:seed RAILS_ENV=#{rails_env}", :once => true
+    run "cd #{current_path} && bundle exec rake RAILS_ENV=#{rails_env} db:seed", :once => true
   end
 
   after "mongoid:index", "demo:create"
