@@ -8,8 +8,12 @@ module ApplicationHelper
     return '' if resource.errors.empty?
 
     messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
-    sentence = I18n.t("errors.messages.not_saved",
-                      :count => resource.errors.count)
+    if resource.errors.count > 1
+      sentence = I18n.t("errors.messages.not_saved.other",
+                        :count => resource.errors.count)
+    else
+      sentence = I18n.t("errors.messages.not_saved.one")
+    end
 
     html = <<-HTML
     <div class="alert alert-error">
@@ -40,4 +44,5 @@ module ApplicationHelper
     end
     flash_messages.join("\n").html_safe
   end
+
 end

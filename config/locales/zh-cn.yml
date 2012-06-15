@@ -1,13 +1,20 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 zh-cn:
+  site:
+    name: '点滴'
   errors:
     moment:
       must_complete_one: '必须填写一项。'
       choose_type: '非法的类型'
   views:
     moment:
-      type:
+      titles:
+        new: '新的点滴'
+        show: '我的点滴'
+        update: '编辑点滴'
+        index: '点滴墙'
+      types:
         note: '随笔'
         photo: '照片'
+      messages:
+        saved: '添加成功。'
+        updated: '修改成功。'

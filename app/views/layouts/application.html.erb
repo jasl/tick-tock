@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%= content_for?(:title) ? yield(:title) : "TickTock" %></title>
+  <%= yield :meta %>
+  <title><%= @page_title ? "#{t('site.name')} - #{@page_title.to_s}" : t('site.name') %></title>
   <%= csrf_meta_tags %>
 
   <!--[if lt IE 9]>
@@ -28,7 +29,7 @@
           <span class="icon-bar"></span>
         </a>
 
-        <a class="brand" href="/">点滴&nbsp;ver.m2</a>
+        <a class="brand" href="/"><%= t('site.name') %></a>
 
         <div class="nav-collapse">
           <ul class="nav">
@@ -75,7 +76,7 @@
       </div>
       <div>
         <p>
-          Created by &copy; <a href="http://jasl.github.com">Jasl</a> 2012.<br/>
+          TickTock ver.<%= Settings['version'] %> Created by &copy; <a href="http://jasl.github.com">Jasl</a> 2012.<br/>
           Based on rails 3.2. Watch the source code on <a href="https://github.com/jasl/tick-tock">github</a>.
         </p>
       </div>

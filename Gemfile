@@ -22,6 +22,9 @@ gem 'omniauth'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'jquery-rails'
 
+# Setting
+gem 'settingslogic'
+
 # Upload
 gem 'carrierwave'
 gem 'carrierwave-mongoid'

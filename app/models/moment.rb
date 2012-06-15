@@ -22,6 +22,10 @@ class Moment
   after_validation :even_error_messages
   after_build :complete_type
 
+  def build_all
+    TYPES.each {|type| self.send("build_#{type}") }
+  end
+
   private
 
   def complete_type

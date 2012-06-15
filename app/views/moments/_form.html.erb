@@ -12,10 +12,10 @@
       <div class="tabbable">
         <ul class="nav nav-tabs">
           <% if flag %>
-            <li class="<%= "active" if @moment.type.nil? or @moment.type == :note %>"><a href="#note" data-toggle="tab"><%= t("views.moment.type.note") %></a></li>
-            <li class="<%= "active" if @moment.type == :photo %>"><a href="#photo" data-toggle="tab"><%= t("views.moment.type.photo") %></a></li>
+            <li class="<%= "active" if @moment.type.nil? or @moment.type == :note %>"><a href="#note" data-toggle="tab"><%= t("views.moment.types.note") %></a></li>
+            <li class="<%= "active" if @moment.type == :photo %>"><a href="#photo" data-toggle="tab"><%= t("views.moment.types.photo") %></a></li>
           <% else %>
-            <li class="active"><a href="#<%= @moment.type %>" data-toggle="tab"><%= t("views.moment.type.#{@moment.type}") %></a></li>
+            <li class="active"><a href="#<%= @moment.type %>" data-toggle="tab"><%= t("views.moment.types.#{@moment.type}") %></a></li>
           <% end %>
         </ul>
         <div class="tab-content">

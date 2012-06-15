@@ -2,12 +2,22 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  site:
+    name: 'Tick Tock'
   errors:
-      moment:
-        must_complete_one: 'must complete one item.'
-        choose_type: 'invalid type.'
+    moment:
+      must_complete_one: 'must complete one item.'
+      choose_type: 'invalid type.'
   views:
-      moment:
-        type:
-          note: 'Note'
-          photo: 'Photo'
+    moment:
+      titles:
+        new: 'new moment'
+        show: 'my moment'
+        update: 'edit moment'
+        index: 'moments wall'
+      type:
+        note: 'Note'
+        photo: 'Photo'
+      messages:
+        saved: 'create successfully.'
+        updated: 'update successfully.'
