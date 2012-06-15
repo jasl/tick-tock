@@ -1,10 +1,10 @@
 Tick-tock
 ==========
-Tick-tock is an open source web app project for learning that provide a dairy service.
+Tick-tock is a privacy-aware, personally-controlled and open source web app project for learning that provide a dairy service.
 
 It's based on Rails 3.2 and using MongoDB for persistence.
 
-Core point
+Inspiration
 ==========
 User's every dairy has equal value.
 
