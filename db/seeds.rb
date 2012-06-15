@@ -10,7 +10,7 @@ demo = User.where(:email => 'demo@demo.com').first
 
 unless demo.moments.empty?
   puts "Clearing demo user's' moments..."
-  demo.moments.clear
+  demo.moments.destroy_all
 end
 
 puts "Creating demo moments..."

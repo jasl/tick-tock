@@ -4,9 +4,15 @@ class MomentsController < ApplicationController
   # GET /moments
   # GET /moments.json
   def index
-    random_ids = get_random_numbers(current_user.moments.length, 20)
     @moments = []
-    random_ids.each {|id| @moments<<current_user.moments[id]}
+
+    total_moments = current_user.moments.length
+    if total_moments <= Settings['moments_on_wall']
+      @moments = current_user.moments.all.shuffle
+    else
+      random_ids = get_random_numbers(total_moments-1, Settings['moments_on_wall'])
+      random_ids.each { |id| @moments<<current_user.moments[id] unless current_user.moments[id].nil? }
+    end
 
     respond_to do |format|
       format.html { @page_title = t("views.moment.titles.index") } # index.html.erb
@@ -29,7 +35,7 @@ class MomentsController < ApplicationController
     @moment = current_user.moments.find(params[:id])
 
     respond_to do |format|
-      format.html { @page_title = t("views.moment.titles.show") }  # show.html.erb
+      format.html { @page_title = t("views.moment.titles.show") } # show.html.erb
       format.json { render json: @moment }
     end
   end
@@ -41,7 +47,7 @@ class MomentsController < ApplicationController
     @moment.build_all
 
     respond_to do |format|
-      format.html { @page_title = t("views.moment.titles.new") }  # new.html.erb
+      format.html { @page_title = t("views.moment.titles.new") } # new.html.erb
       format.json { render json: @moment }
     end
   end

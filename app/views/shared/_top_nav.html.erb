@@ -1,13 +1,29 @@
 <div class="nav-collapse">
   <ul class="nav">
     <% if user_signed_in? %>
-      <li><a href="<%= moments_path %>"><%= t("views.moment.titles.index") %></a></li>
-      <li><a href="<%= moments_all_path %>"><%= t("views.moment.titles.all") %></a></li>
-      <li><a href="<%= new_moment_path %>"><%= t("views.moment.titles.new") %></a></li>
+      <li>
+        <a <%= 'class=active' if current_page? moments_path %> href="<%= moments_path %>">
+        <%= t("views.moment.titles.index") %>
+        </a>
+      </li>
+      <li>
+        <a <%= 'class=active' if current_page? moments_all_path %> class="" href="<%= moments_all_path %>">
+          <%= t("views.moment.titles.all") %>
+        </a>
+      </li>
+      <li>
+        <a <%= 'class=active' if current_page? new_moment_path %> class="" href="<%= new_moment_path %>">
+          <%= t("views.moment.titles.new") %>
+        </a>
+      </li>
     <% end %>
   </ul>
   <ul class="nav pull-right">
-    <li><a href="<%= about_path %>"><%= t("views.home.about") %></a></li>
+    <li>
+      <a <%= 'class=active' if current_page? about_path %> href="<%= about_path %>">
+      <%= t("views.home.about") %>
+      </a>
+    </li>
     <% unless user_signed_in? %>
       <li <%= 'class=active' if current_page? new_user_registration_path %>>
         <%= link_to t('devise.navigation.sign_up'), new_user_registration_path %>

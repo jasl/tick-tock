@@ -1,6 +1,6 @@
 defaults: &defaults
   version: 'Milestone-3'
-
+  moments_on_wall: 12
 development:
   <<: *defaults
 
