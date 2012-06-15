@@ -11,13 +11,13 @@ en:
   views:
     moment:
       titles:
-        new: 'new moment'
-        show: 'my moment'
-        update: 'edit moment'
-        index: 'moments wall'
+        new: 'New moment'
+        show: 'My moment'
+        edit: 'Edit moment'
+        index: 'Moments wall'
       type:
         note: 'Note'
         photo: 'Photo'
       messages:
-        saved: 'create successfully.'
-        updated: 'update successfully.'
+        saved: 'Create successfully.'
+        updated: 'Update successfully.'

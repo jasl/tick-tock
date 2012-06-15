@@ -10,7 +10,7 @@ zh-cn:
       titles:
         new: '新的点滴'
         show: '我的点滴'
-        update: '编辑点滴'
+        edit: '编辑点滴'
         index: '点滴墙'
       types:
         note: '随笔'

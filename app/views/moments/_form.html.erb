@@ -2,7 +2,7 @@
 <div class="container">
   <%= form_for @moment, :html => { :class => 'form-horizontal'} do |f| %>
     <fieldset>
-      <legend>新的点滴</legend>
+      <legend><%= t("views.moment.titles.#{action_name}") %></legend>
       <div class="row row-grid">
         <div class="span6 offset1">
           <%= print_error_messages @moment %>
