@@ -42,7 +42,7 @@
           <% @moment.types.each do |type| %>
             <% if flag or @moment.type == type %>
               <div class="tab-pane<%= " active" if first_flag or @moment.type == type %>" id="<%= type %>">
-                <%= render :partial => "moments/types/#{type}", :locals => {:f => f, :moment => @moment} %>
+                <%= render :partial => "moments/types/form/#{type}", :locals => {:f => f, :moment => @moment} %>
               </div>
             <% end %>
             <% first_flag = false if first_flag %>

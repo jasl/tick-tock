@@ -1,5 +1,5 @@
 defaults: &defaults
-  version: 'Milestone-3'
+  version: 'rush-4'
   moments_on_wall: 12
 development:
   <<: *defaults

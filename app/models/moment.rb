@@ -15,6 +15,7 @@ class Moment
   validates_inclusion_of :type, :in => TYPES
 
   TYPES.each do |type|
+    require "types/#{type}"
     embeds_one type, validate: true
     accepts_nested_attributes_for type
     attr_accessible "#{type}_attributes".to_sym
