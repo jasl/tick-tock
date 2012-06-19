@@ -1,27 +1,22 @@
-<% if @moments.empty? %>
-  <p>You have no moment, why not to create one? <%= link_to t("views.moment.titles.new"), new_moment_path %></p>
-<% else %>
-  <p><%= link_to 'Refresh!(test)', moments_path %></p>
-  <table class="table">
-    <thead>
+<table class="table">
+  <thead>
+  <tr>
+    <th style="width: 60%;">Note</th>
+    <th>时间</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @moments.each do |moment| %>
     <tr>
-      <th style="width: 60%;">Note</th>
-      <th>时间</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <td><%= moment.note.body unless moment.note.nil? %></td>
+      <td><%= moment.full_time %></td>
+      <td><%= link_to 'Show', moment %></td>
+      <td><%= link_to 'Edit', edit_moment_path(moment) %></td>
+      <td><%= link_to 'Destroy', moment, data:{confirm: 'Are you sure?'}, method: :delete %></td>
     </tr>
-    </thead>
-    <tbody>
-    <% @moments.each do |moment| %>
-      <tr>
-        <td><%= moment.note.body unless moment.note.nil? %></td>
-        <td><%= moment.created_at %></td>
-        <td><%= link_to 'Show', moment %></td>
-        <td><%= link_to 'Edit', edit_moment_path(moment) %></td>
-        <td><%= link_to 'Destroy', moment, data:{confirm: 'Are you sure?'}, method: :delete %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-<% end %>
+  <% end %>
+  </tbody>
+</table>

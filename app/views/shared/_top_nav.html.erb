@@ -2,13 +2,13 @@
   <ul class="nav">
     <% if user_signed_in? %>
       <li>
-        <a <%= 'class=active' if current_page? moments_path %> href="<%= moments_path %>">
-        <%= t("views.moment.titles.index") %>
+        <a <%= 'class=active' if current_page? moments_path %> href="<%= moments_wall_path %>">
+        <%= t("views.moment.titles.wall") %>
         </a>
       </li>
       <li>
-        <a <%= 'class=active' if current_page? moments_all_path %> class="" href="<%= moments_all_path %>">
-          <%= t("views.moment.titles.all") %>
+        <a <%= 'class=active' if current_page? moments_all_path %> class="" href="<%= moments_path %>">
+          <%= t("views.moment.titles.index") %>
         </a>
       </li>
       <li>

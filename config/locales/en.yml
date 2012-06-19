@@ -13,8 +13,8 @@ en:
         show: 'My moment'
         edit: 'Edit moment'
         update: 'Edit moment'
-        index: 'Moments wall'
-        all: 'All Moments'
+        wall: 'Moments wall'
+        index: 'All Moments'
       type:
         note: 'Note'
         photo: 'Photo'

@@ -1,7 +1,7 @@
 class Moment
   include Mongoid::Document
   include Mongoid::Document
-  include Mongoid::Timestamps
+  # include Mongoid::Timestamps
   # include Mongoid::Paranoia
 
   # TYPES = [:note, :photo] #disabled photo temporarily until impl it.
@@ -14,8 +14,19 @@ class Moment
   field :type, :type => Symbol, :null => false
   validates_inclusion_of :type, :in => TYPES
 
+  field :year, :type => Integer
+  index :year
+  field :month, :type => Integer
+  validates_inclusion_of :month, :in => 1..12
+  index :month
+  field :day, :type => Integer
+  validates_inclusion_of :day, :in => 1..31
+  index :day
+  field :time, :type => Time
+  index :time
+
   TYPES.each do |type|
-    require "types/#{type}"
+    require "embedded_models/types/#{type}"
     embeds_one type, validate: true
     accepts_nested_attributes_for type
     attr_accessible "#{type}_attributes".to_sym
@@ -24,7 +35,7 @@ class Moment
   belongs_to :user
   index :user_id
 
-  before_save :clean_embeds_one_obj
+  before_save :clean_embeds_one_obj, :add_datetime
   after_validation :even_error_messages
   after_build :complete_type
 
@@ -32,7 +43,21 @@ class Moment
     TYPES.each {|type| self.send("build_#{type}") }
   end
 
+  def full_time
+    Time.mktime self.year, self.month, self.day, self.time.hour, self.time.min, self.time.sec
+  end
+
   private
+
+  def add_datetime
+    if self.time.nil?
+      now = Time.now
+      self.year = now.year
+      self.month = now.month
+      self.day = now.day
+      self.time = now.localtime # maybe gmtime is better?
+    end
+  end
 
   def complete_type
     TYPES.each do |type|

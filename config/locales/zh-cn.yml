@@ -13,8 +13,8 @@ zh-cn:
         show: '我的点滴'
         edit: '编辑点滴'
         update: '编辑点滴'
-        index: '点滴墙'
-        all: '所有点滴'
+        wall: '点滴墙'
+        index: '所有点滴'
       types:
         note: '随笔'
         photo: '照片'

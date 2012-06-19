@@ -1,6 +1,6 @@
 TickTock::Application.routes.draw do
 
-  match 'moments/all' => 'moments#all', :via => :get, :as => 'moments_all'
+  match 'moments/wall' => 'moments#wall', :via => :get, :as => 'moments_wall'
   resources :moments
 
   get "home/index", :as => '/index'

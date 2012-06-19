@@ -1,9 +1,8 @@
 class MomentsController < ApplicationController
   before_filter :authenticate_user!
 
-  # GET /moments
-  # GET /moments.json
-  def index
+
+  def wall
     @moments = []
 
     total_moments = current_user.moments.length
@@ -12,20 +11,22 @@ class MomentsController < ApplicationController
     else
       random_ids = get_random_numbers(total_moments-1, Settings['moments_on_wall'])
       random_ids.each { |id| @moments<<current_user.moments[id] unless current_user.moments[id].nil? }
-      (@moments.sort_by! { |moment| moment.created_at }).reverse!
+      (@moments.sort_by! { |moment| moment.full_time }).reverse!
     end
 
     respond_to do |format|
-      format.html { @page_title = t("views.moment.titles.index") } # index.html.erb
+      format.html { @page_title = t("views.moment.titles.wall") } # index.html.erb
       format.json { render json: @moments }
     end
   end
 
-  def all
+  # GET /moments
+  # GET /moments.json
+  def index
     @moments = current_user.moments.all
 
     respond_to do |format|
-      format.html { @page_title = t("views.moment.titles.all") } # index.html.erb
+      format.html { @page_title = t("views.moment.titles.index") } # index.html.erb
       format.json { render json: @moments }
     end
   end
