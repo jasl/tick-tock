@@ -47,7 +47,7 @@ namespace :demo do
     run "cd #{current_path} && bundle exec rake RAILS_ENV=#{rails_env} db:seed", :once => true
   end
 
-  after "mongoid:index", "demo:create"
+  # after "mongoid:index", "demo:create"
 end
 
 depend :remote, :command, "bundle"
