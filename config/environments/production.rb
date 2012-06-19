@@ -1,3 +1,15 @@
+def compile_asset?(path)
+  # ignores any filename that begins with '_' (e.g. sass partials)
+  # all other css/js/sass/image files are processed
+  if File.basename(path) =~ /^[^_].*\.\w+$/
+    puts "Compiling: #{path}"
+    true
+  else
+    puts "Ignoring: #{path}"
+    false
+  end
+end
+
 TickTock::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -23,7 +35,8 @@ TickTock::Application.configure do
   config.assets.js_compressor  = :therubyracer
   config.assets.css_compressor = :less
 
-  config.assets.precompile = %W"*.js *.coffee *.css *.less *.sass *.scss"
+  #config.assets.precompile = [ method(:compile_asset?).to_proc ]
+  config.assets.precompile<< '*.js'
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
