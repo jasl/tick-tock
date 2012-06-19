@@ -1,6 +1,6 @@
 defaults: &defaults
   version: 'Rush-4'
-  moments_on_wall: 12
+  moments_on_wall: 6
 development:
   <<: *defaults
 

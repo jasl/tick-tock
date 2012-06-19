@@ -1,37 +1,23 @@
-<p><%= link_to 'Refresh!(test)', moments_path %></p>
+<% content_for :js do %>
+  <%= javascript_include_tag 'anythingslider' %>
+  <%= javascript_include_tag :moments_wall %>
+<% end %>
+<% content_for :style do %>
+  <%= stylesheet_link_tag :moments_wall %>
+<% end %>
 
 <div class="container">
   <% if @moments.empty? %>
     <p>You have no moment, why not to create one? <%= link_to t("views.moment.titles.new"), new_moment_path %></p>
   <% else %>
-    <div class="header">
-
-    </div>
-    <div class="items">
-
-    </div>
+    <p><%= link_to 'Refresh!(test)', moments_wall_path %></p>
+    <ul id="slider">
+      <% @moments.each do |moment| %>
+        <li>
+          <p><%= moment.full_time.strftime("%Y-%m-%d %H:%M") %></p>
+          <p><%= moment.note.body %></p>
+        </li>
+      <% end %>
+    </ul>
   <% end %>
 </div>
-
-<table class="table">
-  <thead>
-  <tr>
-    <th style="width: 60%;">Note</th>
-    <th>时间</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @moments.each do |moment| %>
-    <tr>
-      <td><%= moment.note.body unless moment.note.nil? %></td>
-      <td><%= moment.full_time %></td>
-      <td><%= link_to 'Show', moment %></td>
-      <td><%= link_to 'Edit', edit_moment_path(moment) %></td>
-      <td><%= link_to 'Destroy', moment, data:{confirm: 'Are you sure?'}, method: :delete %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
