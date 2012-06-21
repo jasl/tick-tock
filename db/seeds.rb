@@ -16,9 +16,9 @@ unless User.where(:email => 'demo@demo.com').exists?
                :name => '演示者'
 end
 
+demo = User.where(:email => 'demo@demo.com').first
 if demo.moments.empty?
   puts "Creating demo moments..."
-  demo = User.where(:email => 'demo@demo.com').first
   1.upto(200) do |i|
     moment = demo.moments.build :note_attributes => {:body => "日记#{i}"*100}
     # just a demo, avoid any wrong :-)
