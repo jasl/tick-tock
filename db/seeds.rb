@@ -3,6 +3,13 @@
 require 'time'
 
 unless User.where(:email => 'demo@demo.com').exists?
+  puts "Creating the great creator..."
+  User.create! :email => 'jasl123@126.com',
+               :password => 'aaaaaa',
+               :name => 'Jasl'
+end
+
+unless User.where(:email => 'demo@demo.com').exists?
   puts "Creating demo user..."
   User.create! :email => 'demo@demo.com',
                :password => 'password',
