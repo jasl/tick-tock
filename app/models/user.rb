@@ -49,4 +49,8 @@ class User
   has_many :moments
   index :moments
 
+  def admin?
+    self.email == Settings[:admin]["email"]
+  end
+
 end

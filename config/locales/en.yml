@@ -6,6 +6,10 @@ en:
       must_complete_one: 'must complete one item.'
       choose_type: 'invalid type.'
   views:
+    cpanel:
+      dashboard:
+        titles:
+          index: 'Dashboard'
     moment:
       titles:
         new: 'New moment'

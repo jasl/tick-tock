@@ -1,5 +1,9 @@
 TickTock::Application.routes.draw do
 
+  namespace :cpanel do
+    get "dashboard/index"
+  end
+
   match 'moments/wall' => 'moments#wall', :via => :get, :as => 'moments_wall'
   resources :moments
 

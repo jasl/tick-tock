@@ -3,7 +3,7 @@
     <% if user_signed_in? %>
       <li>
         <a <%= 'class=active' if current_page? moments_wall_path %> href="<%= moments_wall_path %>">
-        <%= t("views.moment.titles.wall") %>
+          <%= t("views.moment.titles.wall") %>
         </a>
       </li>
       <li>
@@ -21,7 +21,7 @@
   <ul class="nav pull-right">
     <li>
       <a <%= 'class=active' if current_page? about_path %> href="<%= about_path %>">
-      <%= t("views.home.about") %>
+        <%= t("views.home.about") %>
       </a>
     </li>
     <% unless user_signed_in? %>
@@ -38,7 +38,11 @@
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><%= link_to(t('devise.navigation.change_registration'),edit_user_registration_path) %></li>
+          <% if current_user.admin? %>
+            <li><%= link_to(t('views.cpanel.dashboard.titles.index'), cpanel_dashboard_index_path) %></li>
+            <li class="divider"></li>
+          <% end %>
+          <li><%= link_to(t('devise.navigation.change_registration'), edit_user_registration_path) %></li>
           <li><%= link_to t('devise.navigation.sign_out'), destroy_user_session_path, :method => :delete %></li>
         </ul>
       </li>

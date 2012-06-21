@@ -6,6 +6,10 @@ zh-cn:
       must_complete_one: '必须填写一项。'
       choose_type: '非法的类型'
   views:
+    cpanel:
+      dashboard:
+        titles:
+          index: '总览'
     moment:
       titles:
         new: '新的点滴'

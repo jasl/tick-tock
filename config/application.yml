@@ -1,11 +1,18 @@
-defaults: &defaults
+default: &default
   version: 'Rush-4'
   moments_on_wall: 6
+
 development:
-  <<: *defaults
+  <<: *default
+  admin:
+    email: 'demo@demo.com'
 
 test:
-  <<: *defaults
+  <<: *default
+  admin:
+    email: 'demo@demo.com'
 
 production:
-  <<: *defaults
+  <<: *default
+  admin:
+    email: 'jasl123@126.com'
