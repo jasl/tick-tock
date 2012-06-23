@@ -1,3 +1,7 @@
+<% content_for :css do %>
+  <%= stylesheet_link_tag "letter_themes/#{@moment.theme}" %>
+<% end %>
+
 <div class="container">
   <% if @moment.nil? %>
     <p>You have no moment, why not to create one? <%= link_to t("views.moment.titles.new"), new_moment_path %></p>
