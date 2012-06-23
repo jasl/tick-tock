@@ -3,20 +3,24 @@ class MomentsController < ApplicationController
 
 
   def wall
-    @moments = []
+    #@moments = []
+    #
+    #total_moments = current_user.moments.length
+    #if total_moments <= Settings['moments_on_wall']
+    #  @moments = current_user.moments.all
+    #else
+    #  random_ids = get_random_numbers(total_moments-1, Settings['moments_on_wall'])
+    #  random_ids.each { |id| @moments<<current_user.moments[id] unless current_user.moments[id].nil? }
+    #  (@moments.sort_by! { |moment| moment.full_time }).reverse!
+    #end
 
+    @moment = nil
     total_moments = current_user.moments.length
-    if total_moments <= Settings['moments_on_wall']
-      @moments = current_user.moments.all
-    else
-      random_ids = get_random_numbers(total_moments-1, Settings['moments_on_wall'])
-      random_ids.each { |id| @moments<<current_user.moments[id] unless current_user.moments[id].nil? }
-      (@moments.sort_by! { |moment| moment.full_time }).reverse!
-    end
+    @moment = current_user.moments[rand(total_moments)] if total_moments > 0
 
     respond_to do |format|
       format.html { @page_title = t("views.moment.titles.wall") } # index.html.erb
-      format.json { render json: @moments }
+      format.json { render json: @moment.nil? ? nil : @moment  }
     end
   end
 
@@ -46,7 +50,8 @@ class MomentsController < ApplicationController
   # GET /moments/new.json
   def new
     @moment = Moment.new
-    @moment.build_all
+    @moment.build_all!
+    @moment.build_time!
 
     respond_to do |format|
       format.html { @page_title = t("views.moment.titles.new") } # new.html.erb

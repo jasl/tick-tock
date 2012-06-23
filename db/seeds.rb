@@ -21,6 +21,7 @@ if demo.moments.empty?
   puts "Creating demo moments..."
   1.upto(200) do |i|
     moment = demo.moments.build :note_attributes => {:body => "日记#{i}"*100}
+    moment.theme = :classic
     # just a demo, avoid any wrong :-)
     year, month, day, time = rand(11) + 2000, rand(11) + 1, rand(28) + 1, Time.parse("#{rand(22)+1}:#{rand(58)+1}:#{rand(58)+1}")
     # p "#{year}-#{month}-#{day} #{time.hour}:#{time.min}:#{time.sec}"

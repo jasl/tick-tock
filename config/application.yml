@@ -1,5 +1,5 @@
 default: &default
-  version: 'Rush-4'
+  version: 'Rush-5'
   moments_on_wall: 6
 
 development:

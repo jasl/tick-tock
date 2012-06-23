@@ -1,0 +1,12 @@
+<% content_for :css do %>
+  <%= stylesheet_link_tag "letter_themes/#{@moment.theme}" %>
+<% end %>
+
+<div class="note">
+  <div class="date">
+    <%= @moment.full_time %>
+  </div>
+  <div class="content">
+    <%= @moment.note.body %>
+  </div>
+</div>

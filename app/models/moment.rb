@@ -14,16 +14,21 @@ class Moment
   field :type, :type => Symbol, :null => false
   validates_inclusion_of :type, :in => TYPES
 
-  field :year, :type => Integer
+  field :theme, :type => Symbol, :null => false, :default => :classic
+
+  field :year, :type => Integer, :null => false
+  validates :year, :presence => true, :inclusion => 2000..2100
   index :year
-  field :month, :type => Integer
-  validates_inclusion_of :month, :in => 1..12
+  field :month, :type => Integer, :null => false
+  validates :month, :presence => true, :inclusion => 1..12
   index :month
-  field :day, :type => Integer
-  validates_inclusion_of :day, :in => 1..31
+  field :day, :type => Integer, :null => false
+  validates :day, :presence => true, :inclusion => 1..31
   index :day
-  field :time, :type => Time
+  field :time, :type => Time, :null => false
   index :time
+  attr_accessible :year, :month, :day, :time
+
 
   TYPES.each do |type|
     require "embedded_models/types/#{type}"
@@ -35,12 +40,20 @@ class Moment
   belongs_to :user
   index :user_id
 
-  before_save :clean_embeds_one_obj, :add_datetime
+  before_save :clean_embeds_one_obj
   after_validation :even_error_messages
-  after_build :complete_type
+  after_build :complete_type, :complete_datetime
 
-  def build_all
+  def build_all!
     TYPES.each {|type| self.send("build_#{type}") }
+  end
+
+  def build_time!
+    now = Time.now
+    self.year = now.year
+    self.month = now.month
+    self.day = now.day
+    self.time = now.localtime # maybe gmtime is better?
   end
 
   def full_time
@@ -48,16 +61,6 @@ class Moment
   end
 
   private
-
-  def add_datetime
-    if self.time.nil?
-      now = Time.now
-      self.year = now.year
-      self.month = now.month
-      self.day = now.day
-      self.time = now.localtime # maybe gmtime is better?
-    end
-  end
 
   def complete_type
     TYPES.each do |type|
@@ -68,6 +71,12 @@ class Moment
           self.send("#{type}=", nil)
         end
       end
+    end
+  end
+
+  def complete_datetime
+    if self.time.nil?
+      self.build_time!
     end
   end
 

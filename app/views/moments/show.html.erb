@@ -1,13 +1,4 @@
-<p>
-  <b>Note body:</b>
-  <%= @moment.note.body unless @moment.note.nil? %>
-</p>
-
-<p>
-  <b>Created at:</b>
-  <%= @moment.full_time %>
-</p>
-
+<%= render "moments/types/show/#{@moment.type}" %>
 
 <%= link_to 'Edit', edit_moment_path(@moment) %> |
 <%= link_to 'Back', moments_path %>
