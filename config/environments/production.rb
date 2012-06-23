@@ -35,8 +35,8 @@ TickTock::Application.configure do
   config.assets.js_compressor  = :therubyracer
   config.assets.css_compressor = :less
 
-  #config.assets.precompile = [ method(:compile_asset?).to_proc ]
-  config.assets.precompile<< '*.js'<< '*.less'
+  config.assets.precompile = [ method(:compile_asset?).to_proc ]
+  #config.assets.precompile<< '*.js'<< '*.css'
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
