@@ -6,7 +6,7 @@ require "rvm/capistrano"
 
 # Set remote server user
 set :user, "root"
-set :runner, "www"
+set :runner, "nginx"
 
 # Fix RVM
 $:.unshift(File.expand_path('./lib', ENV['rvm_path']))
@@ -19,14 +19,14 @@ set :scm, :git
 set :branch, "master"
 ssh_options[:forward_agent] = true
 
-set :deploy_to, "/home/www/#{application}/"
+set :deploy_to, "/home/#{runner}/#{application}/"
 set :use_sudo, false
 set :copy_exclude, %w".git spec"
 
 # set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :system
 
-server "116.255.196.14:2212", :app, :web, :db, :primary => true
+server "50.116.10.227:22", :app, :web, :db, :primary => true
 
 namespace :mongoid do
   desc "Create MongoDB indexes"

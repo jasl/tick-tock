@@ -9,7 +9,7 @@ GIT
       therubyracer (= 0.10.1)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://ruby.taobao.org/
   specs:
     actionmailer (3.2.6)
       actionpack (= 3.2.6)

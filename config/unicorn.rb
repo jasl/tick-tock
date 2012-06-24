@@ -1,5 +1,6 @@
 rails_env = ENV['RAILS_ENV'] || 'production'
-app_path = "/home/www/tick-tock/current"
+app_path = "/home/nginx/tick-tock/current"
+runner, runner_group = 'nginx', 'nginx'
 
 worker_processes 2
 working_directory app_path
@@ -35,7 +36,7 @@ end
 after_fork do |server, worker|
   begin
     uid, gid = Process.euid, Process.egid
-    user, group = 'www', 'www'
+    user, group = runner, runner_group
     target_uid = Etc.getpwnam(user).uid
     target_gid = Etc.getgrnam(group).gid
     worker.tmp.chown(target_uid, target_gid)
