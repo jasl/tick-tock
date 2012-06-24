@@ -39,7 +39,7 @@ Tick-tock will display dairies randomly that keep every dairy's value.
 - Not think out yet. :-)
 
 ##Contributing
-Fork is welcome, hoping you can pull your changes to make tick-tock better.
+Fork is welcome, hoping you can pull your changes to make tick-tock better, especially UI.
 
 ##License
 Tick-tock is copyright Jasl 2012, and files herein are licensed
