@@ -5,6 +5,7 @@ TickTock::Application.routes.draw do
   end
 
   match 'moments/wall' => 'moments#wall', :via => :get, :as => 'moments_wall'
+  match 'moments/get_random' => 'moments#get_random', :via => :get, :as => 'moments_get_random'
   resources :moments
 
   get "home/index", :as => '/index'

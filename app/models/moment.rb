@@ -1,15 +1,10 @@
 class Moment
   include Mongoid::Document
   include Mongoid::Document
-  # include Mongoid::Timestamps
   # include Mongoid::Paranoia
 
   # TYPES = [:note, :photo] #disabled photo temporarily until impl it.
   TYPES = [:note]
-
-  def types
-    TYPES
-  end
 
   field :type, :type => Symbol, :null => false
   validates_inclusion_of :type, :in => TYPES
@@ -29,7 +24,6 @@ class Moment
   index :time
   attr_accessible :year, :month, :day, :time
 
-
   TYPES.each do |type|
     require "embedded_models/types/#{type}"
     embeds_one type, validate: true
@@ -44,11 +38,15 @@ class Moment
   after_validation :even_error_messages
   after_build :complete_type, :complete_datetime
 
-  def build_all!
+  def types
+    TYPES
+  end
+
+  def build_all
     TYPES.each {|type| self.send("build_#{type}") }
   end
 
-  def build_time!
+  def build_time
     now = Time.now
     self.year = now.year
     self.month = now.month

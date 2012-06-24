@@ -46,11 +46,13 @@ class User
   field :name, :type => String, :null => false, :default => ""
   validates :name, :presence => true
 
+  field :state, :type => Symbol, :null => false, :default => :normal
+
   has_many :moments
   index :moments
 
   def admin?
-    self.email == Settings[:admin]["email"]
+    self.state == :admin
   end
 
 end

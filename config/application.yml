@@ -4,15 +4,9 @@ default: &default
 
 development:
   <<: *default
-  admin:
-    email: 'demo@demo.com'
 
 test:
   <<: *default
-  admin:
-    email: 'demo@demo.com'
 
 production:
   <<: *default
-  admin:
-    email: 'jasl123@126.com'

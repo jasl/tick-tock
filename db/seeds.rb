@@ -4,9 +4,11 @@ require 'time'
 
 unless User.where(:email => 'jasl123@126.com').exists?
   puts "Creating the great creator..."
-  User.create! :email => 'jasl123@126.com',
-               :password => 'aaaaaa',
-               :name => 'Jasl'
+  user = User.create! :email => 'jasl123@126.com',
+                      :password => 'aaaaaa',
+                      :name => 'Jasl'
+  user.state = :admin
+  user.update
 end
 
 unless User.where(:email => 'demo@demo.com').exists?

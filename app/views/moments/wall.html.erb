@@ -1,12 +1,18 @@
-<% content_for :css do %>
-  <%= stylesheet_link_tag :moments %>
+<% unless @empty %>
+  <% content_for :js do %>
+    <%= javascript_include_tag 'jquery.timer' %>
+    <%= javascript_include_tag :moments_wall %>
+  <% end %>
+  <% content_for :css do %>
+    <%= stylesheet_link_tag :moments %>
+  <% end %>
 <% end %>
 
 <div class="container">
-  <% if @moment.nil? %>
+  <% if @empty %>
     <p>You have no moment, why not to create one? <%= link_to t("views.moment.titles.new"), new_moment_path %></p>
   <% else %>
-    <p><%= link_to 'Refresh!(test)', moments_wall_path %></p>
-    <%= render "moments/types/show/#{@moment.type}" %>
+    <div id="wall">
+    </div>
   <% end %>
 </div>

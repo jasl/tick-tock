@@ -22,6 +22,8 @@ gem 'omniauth'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'jquery-rails'
 
+gem 'js-routes'
+
 # Setting
 gem 'settingslogic'
 

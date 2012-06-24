@@ -1,6 +1,4 @@
-class Photo
-  include Mongoid::Document
-
+class Photo < Content
   field :body, :type => String, :null => false, :autosave => true
 
   validates :body, :presence => true, :length => 4..10
@@ -15,8 +13,4 @@ class Photo
     self.body = nil
   end
 
-  private
-
-  def identify
-  end
 end

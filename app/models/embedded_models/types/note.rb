@@ -1,5 +1,4 @@
-class Note
-  include Mongoid::Document
+class Note < Content
 
   field :body, :type => String, :null => false, :autosave => true
 
@@ -15,8 +14,4 @@ class Note
     self.body = nil
   end
 
-  private
-
-  def identify
-  end
 end
