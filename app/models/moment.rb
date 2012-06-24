@@ -74,7 +74,7 @@ class Moment
 
   def complete_datetime
     if self.time.nil?
-      self.build_time!
+      self.build_time
     end
   end
 
