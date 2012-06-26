@@ -13,7 +13,6 @@ jQuery ->
         moment.fadeIn("slow")
       else
         timer.stop()
-        moment.fadeOut("slow")
         init()
     , 5000, false
   )
