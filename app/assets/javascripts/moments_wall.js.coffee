@@ -5,7 +5,9 @@ jQuery ->
   timer = $.timer(
     ->
       moment.fadeOut("slow")
+      temp = moment
       moment = moment.next()
+      temp.remove()
       index++
       if index <= moments_count
         moment.fadeIn("slow")
