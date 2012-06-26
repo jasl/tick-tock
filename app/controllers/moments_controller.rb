@@ -1,7 +1,6 @@
 class MomentsController < ApplicationController
   before_filter :authenticate_user!
 
-
   def wall
     @empty = current_user.moments.empty?
 
@@ -11,13 +10,18 @@ class MomentsController < ApplicationController
   end
 
   def get_random
-    @moment = nil
     total_moments = current_user.moments.length
-    @moment = current_user.moments[rand(total_moments)] if total_moments > 0
+    @moments = []
+    if total_moments <= Settings['moments_on_wall']
+      @moments = current_user.moments.all
+    else
+      random_ids = get_random_numbers(total_moments-1, Settings['moments_on_wall'])
+      random_ids.each { |id| @moments<<current_user.moments[id] unless current_user.moments[id].nil? }
+    end
 
     respond_to do |format|
-      format.html { @moment.nil? ? render(:nothing => true) : render('moments/types/show/ajax' , :layout => false) }
-      format.json { render json: @moment.nil? ? nil : @moment }
+      format.html { @moments.empty? ? render(:nothing => true) : render('moments/types/show/ajax', :layout => false) }
+      format.json { render json: @moments.empty? ? nil : @moments }
     end
   end
 

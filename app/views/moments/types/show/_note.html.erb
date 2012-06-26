@@ -1,10 +1,12 @@
-<div class="<%= @moment.theme %>">
+<% moment ||= @moment %>
+<% hide ||= false %>
+<div class="<%= moment.theme %>" <%= "style=display:none" if hide %> >
   <div class="note">
     <div class="date">
-      <%= @moment.full_time %>
+      <%= moment.full_time %>
     </div>
     <div class="content">
-      <%= @moment.note.body %>
+      <%= moment.note.body %>
     </div>
   </div>
 </div>

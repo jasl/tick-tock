@@ -1,3 +1,5 @@
+require 'embedded_models/types/content'
+
 class Moment
   include Mongoid::Document
   include Mongoid::Document

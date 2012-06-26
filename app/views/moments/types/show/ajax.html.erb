@@ -1,1 +1,3 @@
-<%= render "moments/types/show/#{@moment.type}" %>
+<% @moments.each do |moment| %>
+  <%= render "moments/types/show/#{moment.type}", :moment => moment, :hide => true %>
+<% end %>
