@@ -27,5 +27,3 @@ jQuery ->
             timer.play()
     )
   init()
-
-
