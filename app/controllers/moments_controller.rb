@@ -1,6 +1,8 @@
 class MomentsController < ApplicationController
   before_filter :authenticate_user!
 
+  caches_action :new, :wall
+
   def wall
     @empty = current_user.moments.empty?
 

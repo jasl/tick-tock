@@ -35,8 +35,6 @@ TickTock::Application.configure do
   config.assets.js_compressor  = :therubyracer
   config.assets.css_compressor = :less
 
-  config.assets.precompile = [ method(:compile_asset?).to_proc ]
-  #config.assets.precompile<< '*.js'<< '*.css'
   # Defaults to Rails.root.join("public/assets")
   # config.assets.manifest = YOUR_PATH
 
@@ -64,7 +62,7 @@ TickTock::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  # config.assets.precompile += %w( search.js )
+  config.assets.precompile = [ method(:compile_asset?).to_proc ]
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
