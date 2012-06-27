@@ -1,28 +1,20 @@
 <div class="nav-collapse">
   <ul class="nav">
     <% if user_signed_in? %>
-      <li>
-        <a <%= 'class=active' if current_page? moments_wall_path %> href="<%= moments_wall_path %>">
-          <%= t("views.moment.titles.wall") %>
-        </a>
+      <li <%= 'class=active' if current_page? moments_wall_path %>>
+        <%= link_to t("views.moment.titles.wall"), moments_wall_path %>
       </li>
-      <li>
-        <a <%= 'class=active' if current_page? moments_path %> class="" href="<%= moments_path %>">
-          <%= t("views.moment.titles.index") %>
-        </a>
+      <li <%= 'class=active' if current_page? dashboard_path %>>
+        <%= link_to t("views.home.dashboard"), dashboard_path %>
       </li>
-      <li>
-        <a <%= 'class=active' if current_page? new_moment_path %> class="" href="<%= new_moment_path %>">
-          <%= t("views.moment.titles.new") %>
-        </a>
+      <li <%= 'class=active' if current_page? new_moment_path %>>
+        <%= link_to t("views.moment.titles.new"), new_moment_path %>
       </li>
     <% end %>
   </ul>
   <ul class="nav pull-right">
-    <li>
-      <a <%= 'class=active' if current_page? about_path %> href="<%= about_path %>">
-        <%= t("views.home.about") %>
-      </a>
+    <li <%= 'class=active' if current_page? about_path %>>
+      <%= link_to t("views.home.about"), about_path %>
     </li>
     <% unless user_signed_in? %>
       <li <%= 'class=active' if current_page? new_user_registration_path %>>
