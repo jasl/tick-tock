@@ -3,7 +3,7 @@
 <div class="<%= moment.theme %>" <%= "style=display:none" if hide %> >
   <div class="note">
     <div class="date">
-      <%= moment.full_time %>
+      <%= moment.full_time.strftime "%Y-%m-%d  %H:%m" %>
     </div>
     <div class="content">
       <%= moment.note.body %>

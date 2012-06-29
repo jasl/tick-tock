@@ -14,6 +14,7 @@ class MomentsController < ApplicationController
 
     respond_to do |format|
       format.html { @page_title = t("views.moment.titles.wall") }
+      format.json { render json: @summary }
     end
   end
 
