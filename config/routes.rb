@@ -8,7 +8,6 @@ TickTock::Application.routes.draw do
   match 'moments/get_random' => 'moments#get_random', :via => :get, :as => 'moments_get_random'
   resources :moments
 
-  get "/", :to => 'home#index', :as => 'index'
   get "/dashboard", :to => 'home#dashboard', :as => 'dashboard'
   get "/about", :to => 'home#about', :as => 'about'
   root :to => 'home#index'
