@@ -4,8 +4,8 @@
       <li <%= 'class=active' if current_page? moments_wall_path %>>
         <%= link_to t("views.moment.titles.wall"), moments_wall_path %>
       </li>
-      <li <%= 'class=active' if current_page? dashboard_path %>>
-        <%= link_to t("views.home.dashboard"), dashboard_path %>
+      <li <%= 'class=active' if current_page? moments_path %>>
+        <%= link_to t("views.moment.titles.index"), moments_path %>
       </li>
       <li <%= 'class=active' if current_page? new_moment_path %>>
         <%= link_to t("views.moment.titles.new"), new_moment_path %>

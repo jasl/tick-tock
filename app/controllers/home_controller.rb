@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-  before_filter :authenticate_user!, :only => [:dashboard]
 
   caches_page :about
 
@@ -12,10 +11,6 @@ class HomeController < ApplicationController
   end
 
   def about
-
-  end
-
-  def dashboard
 
   end
 end

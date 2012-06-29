@@ -4,7 +4,13 @@ class MomentsController < ApplicationController
   caches_action :new, :wall
 
   def wall
-    @empty = current_user.moments.empty?
+    @summary = { :total => current_user.moments.count}
+    if @summary[:total] > 0
+      @summary[:first] = current_user.moments.first
+      @summary[:latest] = current_user.moments.last
+      @summary[:duration] = ((Time.now - @summary[:first].full_time)/86400).to_i + 1
+      @summary[:average] = @summary[:duration] / @summary[:total] + 1
+    end
 
     respond_to do |format|
       format.html { @page_title = t("views.moment.titles.wall") }
@@ -74,7 +80,7 @@ class MomentsController < ApplicationController
 
     respond_to do |format|
       if @moment.save
-        format.html { redirect_to @moment, notice: t('views.moment.messages.saved') }
+        format.html { redirect_to action: "wall", notice: t('views.moment.messages.saved') }
         format.json { render json: @moment, status: :created, location: @moment }
       else
         format.html { render action: "new" }
@@ -90,7 +96,7 @@ class MomentsController < ApplicationController
 
     respond_to do |format|
       if @moment.update_attributes(params[:moment])
-        format.html { redirect_to @moment, notice: t('views.moment.messages.updated') }
+        format.html { redirect_to action: "wall", notice: t('views.moment.messages.updated') }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
