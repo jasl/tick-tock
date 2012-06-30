@@ -1,5 +1,5 @@
 default: &default
-  version: 'Rush-6'
+  version: 'Root'
   moments_on_wall: 20
 
 development:

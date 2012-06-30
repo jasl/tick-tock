@@ -89,8 +89,10 @@ class Moment
   def even_error_messages
     flag = self.type
 
+    self.errors.delete :type
+
     if flag.nil?
-      self.errors.add(:moment, I18n.t('errors.moment.must_complete_one'))
+      self.errors.add(:type, I18n.t('errors.moment.must_complete_one'))
     else
       self.send(flag).errors.each{ |attr,msg| self.errors.add(attr, msg)}
     end
@@ -99,7 +101,5 @@ class Moment
       self.send "build_#{type}" if type != flag and self.new_record?
       self.errors.delete type unless self.errors.nil?
     end
-
-    self.errors.delete :type
   end
 end

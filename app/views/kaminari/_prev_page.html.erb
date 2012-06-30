@@ -1,0 +1,5 @@
+<% unless current_page.first? %>
+  <li class="previous">
+    <%= link_to raw('&laquo; Newer'), url, :remote => remote %>
+  </li>
+<% end %>

@@ -2,6 +2,8 @@ zh-cn:
   mongoid:
     models:
       user: "用户"
+      moment: "点滴"
+      note: "随笔"
     attributes:
       user:
         name: "名字"
@@ -11,9 +13,11 @@ zh-cn:
         last_logined_at: "上次登录时间"
         remember_me: "记住登陆状态"
         current_password: "旧密码"
+      note:
+        body: "内容"
+      moment:
+        type: "内容"
     errors:
-      models:
-        user: "用户"
       messages:
         inclusion: "不包含于列表中"
         exclusion: "是保留关键字"

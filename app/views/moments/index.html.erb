@@ -1,22 +1,5 @@
-<table class="table">
-  <thead>
-  <tr>
-    <th style="width: 60%;">Note</th>
-    <th>时间</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @moments.each do |moment| %>
-    <tr>
-      <td><%= moment.note.body unless moment.note.nil? %></td>
-      <td><%= moment.full_time %></td>
-      <td><%= link_to 'Show', moment %></td>
-      <td><%= link_to 'Edit', edit_moment_path(moment) %></td>
-      <td><%= link_to 'Destroy', moment, data:{confirm: 'Are you sure?'}, method: :delete %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= render @moments %>
+
+<div class="pull-right">
+  <%= paginate @moments %>
+</div>

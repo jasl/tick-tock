@@ -4,9 +4,13 @@ TickTock::Application.routes.draw do
     get "dashboard/index"
   end
 
-  match '/wall' => 'moments#wall', :via => :get, :as => 'moments_wall'
-  match 'moments/get_random' => 'moments#get_random', :via => :get, :as => 'moments_get_random'
-  resources :moments
+  #match '/wall' => 'moments#wall', :via => :get, :as => 'moments_wall'
+  #match 'moments/get_random' => 'moments#get_random', :via => :get, :as => 'moments_get_random'
+  resources :moments do
+    get 'page/:page', :action => :index, :on => :collection
+    get 'wall', :action => :wall, :on => :collection
+    get 'get_random', :action => :get_random, :on => :collection
+  end
 
   get "/about", :to => 'home#about', :as => 'about'
   root :to => 'home#index'

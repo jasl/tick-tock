@@ -2,6 +2,7 @@ en:
   mongoid:
     models:
       user: "User"
+      moment: "Moment"
     attributes:
       user:
         name: "Name"
@@ -11,9 +12,11 @@ en:
         last_logined_at: "Last signed in at"
         remember_me: "Remember me"
         current_password: "Current Password"
+      moment:
+        type: "Content"
+      note:
+        body: "Content"
     errors:
-      models:
-        user: "User"
       messages:
         inclusion: "Inclusion"
         exclusion: "Exclusion"

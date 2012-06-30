@@ -1,0 +1,8 @@
+<div class="item">
+  <h2><%= link_to moment.full_time.strftime("%Y-%m-%d %H:%m"), moment %></h2>
+  <%= render "moments/types/index/#{moment.type}", :moment => moment %>
+  <div class="pull-right">
+    <%= link_to '删除', moment, data:{confirm: 'Are you sure?'}, method: :delete %>
+  </div>
+  <hr/>
+</div>

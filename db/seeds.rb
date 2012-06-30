@@ -21,16 +21,20 @@ end
 demo = User.where(:email => 'demo@demo.com').first
 if demo.moments.empty?
   puts "Creating demo moments..."
-  1.upto(200) do |i|
-    moment = demo.moments.build :note_attributes => {:body => "日记#{i}"*100}
-    moment.theme = :classic
+  created_times = []
+  1.upto(200) do
     # just a demo, avoid any wrong :-)
-    year, month, day, time = rand(11) + 2000, rand(11) + 1, rand(28) + 1, Time.parse("#{rand(22)+1}:#{rand(58)+1}:#{rand(58)+1}")
-    # p "#{year}-#{month}-#{day} #{time.hour}:#{time.min}:#{time.sec}"
-    moment.year = year
-    moment.month = month
-    moment.day = day
-    moment.time = time
+    created_times<< Time.new(rand(11) + 2000, rand(11) + 1, rand(28) + 1, rand(22)+1, rand(58)+1, rand(58)+1)
+  end
+  created_times.sort!
+
+  created_times.each_with_index do |time, i|
+    moment = demo.moments.build :note_attributes => {:body => "日记#{i+1}"*100}
+    moment.theme = :classic
+    moment.year = time.year
+    moment.month = time.month
+    moment.day = time.day
+    moment.time = Time.parse time.strftime "%H:%m"
     moment.save!
   end
 end

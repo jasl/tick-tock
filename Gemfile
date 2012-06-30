@@ -24,6 +24,9 @@ gem 'jquery-rails'
 
 gem 'js-routes'
 
+# Pagination
+gem 'kaminari'
+
 # Setting
 gem 'settingslogic'
 

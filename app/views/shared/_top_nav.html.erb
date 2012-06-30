@@ -1,8 +1,8 @@
 <div class="nav-collapse">
   <ul class="nav">
     <% if user_signed_in? %>
-      <li <%= 'class=active' if current_page? moments_wall_path %>>
-        <%= link_to t("views.moment.titles.wall"), moments_wall_path %>
+      <li <%= 'class=active' if current_page? wall_moments_path %>>
+        <%= link_to t("views.moment.titles.wall"), wall_moments_path %>
       </li>
       <li <%= 'class=active' if current_page? moments_path %>>
         <%= link_to t("views.moment.titles.index"), moments_path %>

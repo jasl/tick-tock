@@ -17,7 +17,7 @@ jQuery ->
     , 5000, false
   )
   init = ->
-    $('#wall').load(Routes.moments_get_random_path(),
+    $('#wall').load(Routes.get_random_moments_path(),
       ->
         moments_count = $('#wall').children().length
         if moments_count > 0

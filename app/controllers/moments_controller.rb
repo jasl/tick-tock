@@ -37,7 +37,7 @@ class MomentsController < ApplicationController
   # GET /moments
   # GET /moments.json
   def index
-    @moments = current_user.moments.all
+    @moments = current_user.moments.page params[:page]
 
     respond_to do |format|
       format.html { @page_title = t("views.moment.titles.index") } # index.html.erb
