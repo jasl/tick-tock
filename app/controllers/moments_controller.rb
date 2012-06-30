@@ -1,3 +1,5 @@
+require 'date'
+
 class MomentsController < ApplicationController
   before_filter :authenticate_user!
 
@@ -6,8 +8,12 @@ class MomentsController < ApplicationController
     if @summary[:total] > 0
       @summary[:first] = current_user.moments.first
       @summary[:latest] = current_user.moments.last
-      @summary[:duration] = ((Time.now - @summary[:first].full_time)/86400).to_i + 1
-      @summary[:average] = @summary[:duration] / @summary[:total] + 1
+      if Time.now.to_date.eql? @summary[:first].full_time.to_date
+        @summary[:duration] = 1
+      else
+        @summary[:duration] = (Time.now.to_date - @summary[:first].full_time.to_date).to_i
+      end
+      @summary[:average] = @summary[:total] / @summary[:duration].to_f
     end
 
     respond_to do |format|
