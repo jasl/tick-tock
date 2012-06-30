@@ -1,7 +1,7 @@
 class MomentsController < ApplicationController
   before_filter :authenticate_user!
 
-  caches_action :new, :wall
+  caches_action :new
 
   def wall
     @summary = { :total => current_user.moments.count}
