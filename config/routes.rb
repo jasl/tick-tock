@@ -20,11 +20,17 @@ TickTock::Application.routes.draw do
     resource :registration,
              only: [:new, :create, :edit, :update],
              path: 'users',
-             path_names: { new: 'sign_up' },
+             path_names: {new: 'sign_up'},
              controller: 'devise/registrations',
              as: :user_registration do
       get :cancel
     end
   end
+  namespace :api do
+    namespace :v1 do
+      resources :tokens, :only => [:create, :destroy]
+    end
+  end
+
 
 end

@@ -8,7 +8,7 @@ class User
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable # , :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable, :token_authenticatable # , :omniauthable
 
   ## Database authenticatable
   field :email,              :type => String, :null => false, :default => ""
@@ -40,7 +40,9 @@ class User
   # field :locked_at,       :type => Time
 
   ## Token authenticatable
-  # field :authentication_token, :type => String
+  field :authentication_token, :type => String
+  # before_save :ensure_authentication_token
+  index :authentication_token
 
   ## User attributions
   field :name, :type => String, :null => false, :default => ""
@@ -50,6 +52,8 @@ class User
 
   has_many :moments
   index :moments
+
+  attr_accessible :email, :authentication_token
 
   def admin?
     self.state == :admin
