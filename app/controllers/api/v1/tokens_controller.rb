@@ -37,7 +37,7 @@ class Api::V1::TokensController < ApplicationController
   end
 
   def destroy
-    @user=User.where(:authentication_token => params[:auth_token]).first
+    @user=User.where(:authentication_token => params[:id]).first
     if @user.nil?
       logger.info("Token not found.")
       render :status => 404, :json => {:message => "Invalid token."}
