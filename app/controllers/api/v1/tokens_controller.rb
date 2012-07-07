@@ -2,6 +2,9 @@ class Api::V1::TokensController < ApplicationController
   skip_before_filter :verify_authenticity_token
   respond_to :json
 
+  # POST /api/v1/tokens.json
+  # @params email: string
+  # @params password: string
   def create
     y params
     email = params[:email]
@@ -36,6 +39,8 @@ class Api::V1::TokensController < ApplicationController
     end
   end
 
+  # DELETE /api/v1/tokens/:id
+  # @params :id: string current user's auth token
   def destroy
     @user=User.where(:authentication_token => params[:id]).first
     if @user.nil?

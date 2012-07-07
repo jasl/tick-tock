@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+<title>module ApplicationHelper - Rails Application Documentation</title>
+
+<link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
+
+<script type="text/javascript">
+  var rdoc_rel_prefix = "./";
+</script>
+
+<script type="text/javascript" charset="utf-8" src="./js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/navigation.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search_index.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/search.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/searcher.js"></script>
+<script type="text/javascript" charset="utf-8" src="./js/darkfish.js"></script>
+
+
+<body id="top" class="module">
+<nav id="metadata">
+  <nav id="home-section" class="section">
+  <h3 class="section-header">
+    <a href="./index.html">Home</a>
+    <a href="./table_of_contents.html#classes">Classes</a>
+    <a href="./table_of_contents.html#methods">Methods</a>
+  </h3>
+</nav>
+
+
+  <nav id="search-section" class="section project-section" class="initially-hidden">
+  <form action="#" method="get" accept-charset="utf-8">
+    <h3 class="section-header">
+      <input type="text" name="search" placeholder="Search" id="search-field"
+             title="Type to search, Up and Down to navigate, Enter to load">
+    </h3>
+  </form>
+
+  <ul id="search-results" class="initially-hidden"></ul>
+</nav>
+
+
+  <div id="file-metadata">
+    <nav id="file-list-section" class="section">
+  <h3 class="section-header">Defined In</h3>
+  <ul>
+    <li>app/helpers/application_helper.rb
+  </ul>
+</nav>
+
+    
+  </div>
+
+  <div id="class-metadata">
+    
+    
+    
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
+    
+    <li><a href="#method-i-notice_message">#notice_message</a>
+    
+    <li><a href="#method-i-parent_layout">#parent_layout</a>
+    
+    <li><a href="#method-i-print_error_messages">#print_error_messages</a>
+    
+  </ul>
+</nav>
+
+  </div>
+
+  <div id="project-metadata">
+    <nav id="fileindex-section" class="section project-section">
+  <h3 class="section-header">Pages</h3>
+
+  <ul>
+  
+    <li class="file"><a href="./doc/README_FOR_APP.html">README_FOR_APP</a>
+  
+  </ul>
+</nav>
+
+    <nav id="classindex-section" class="section project-section">
+  <h3 class="section-header">Class and Module Index</h3>
+
+  <ul class="link-list">
+  
+    <li><a href="./Api.html">Api</a>
+  
+    <li><a href="./Api/V1.html">Api::V1</a>
+  
+    <li><a href="./Api/V1/TokensController.html">Api::V1::TokensController</a>
+  
+    <li><a href="./Cpanel.html">Cpanel</a>
+  
+    <li><a href="./Cpanel/DashboardController.html">Cpanel::DashboardController</a>
+  
+    <li><a href="./Cpanel/DashboardHelper.html">Cpanel::DashboardHelper</a>
+  
+    <li><a href="./ApplicationController.html">ApplicationController</a>
+  
+    <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Content.html">Content</a>
+  
+    <li><a href="./HomeController.html">HomeController</a>
+  
+    <li><a href="./HomeHelper.html">HomeHelper</a>
+  
+    <li><a href="./Moment.html">Moment</a>
+  
+    <li><a href="./MomentsController.html">MomentsController</a>
+  
+    <li><a href="./MomentsHelper.html">MomentsHelper</a>
+  
+    <li><a href="./Note.html">Note</a>
+  
+    <li><a href="./Photo.html">Photo</a>
+  
+    <li><a href="./Settings.html">Settings</a>
+  
+    <li><a href="./User.html">User</a>
+  
+  </ul>
+</nav>
+
+  </div>
+</nav>
+
+<div id="documentation">
+  <h1 class="module">module ApplicationHelper</h1>
+
+  <div id="description" class="description">
+    
+  </div><!-- description -->
+
+  
+  
+  
+  <section id="5Buntitled-5D" class="documentation-section">
+    
+
+    
+
+    
+
+    
+
+    <!-- Methods -->
+    
+     <section id="public-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Public Instance Methods</h3>
+
+    
+      <div id="method-i-notice_message" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">notice_message</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="notice_message-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 31</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">notice_message</span>
+    <span class="ruby-identifier">flash_messages</span> = []
+    <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">type</span>, <span class="ruby-identifier">message</span><span class="ruby-operator">|</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-identifier">message</span>
+        <span class="ruby-identifier">type</span> = <span class="ruby-value">:success</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">type</span> <span class="ruby-operator">==</span> <span class="ruby-value">:notice</span>
+        <span class="ruby-identifier">html</span> = <span class="ruby-string">&quot;        &lt;div class=\&quot;alert fade in alert-#{type}\&quot;&gt;
+          &lt;a class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&lt;i class=&quot;icon-remove&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+          #{message}
+        &lt;/div&gt;
+&quot;</span>
+        <span class="ruby-identifier">flash_messages</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">html</span>
+      <span class="ruby-keyword">end</span>
+    <span class="ruby-keyword">end</span>
+    <span class="ruby-identifier">flash_messages</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot;\n&quot;</span>).<span class="ruby-identifier">html_safe</span>
+  <span class="ruby-keyword">end</span></pre>
+          </div><!-- notice_message-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- notice_message-method -->
+
+    
+      <div id="method-i-parent_layout" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">parent_layout</span><span
+            class="method-args">(layout)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="parent_layout-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 2</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">parent_layout</span>(<span class="ruby-identifier">layout</span>)
+  <span class="ruby-ivar">@view_flow</span>.<span class="ruby-identifier">set</span>(<span class="ruby-value">:layout</span>, <span class="ruby-identifier">output_buffer</span>)
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">output_buffer</span> = <span class="ruby-identifier">render</span>(<span class="ruby-value">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-node">&quot;layouts/#{layout}&quot;</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- parent_layout-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- parent_layout-method -->
+
+    
+      <div id="method-i-print_error_messages" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">print_error_messages</span><span
+            class="method-args">(resource)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+
+          
+          <div class="method-source-code" id="print_error_messages-source">
+            <pre><span class="ruby-comment"># File app/helpers/application_helper.rb, line 7</span>
+  <span class="ruby-keyword">def</span> <span class="ruby-identifier">print_error_messages</span> <span class="ruby-identifier">resource</span>
+    <span class="ruby-keyword">return</span> <span class="ruby-string">''</span> <span class="ruby-keyword">if</span> <span class="ruby-identifier">resource</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">empty?</span>
+
+    <span class="ruby-identifier">messages</span> = <span class="ruby-identifier">resource</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">full_messages</span>.<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">msg</span><span class="ruby-operator">|</span> <span class="ruby-identifier">content_tag</span>(<span class="ruby-value">:li</span>, <span class="ruby-identifier">msg</span>) }.<span class="ruby-identifier">join</span>
+    <span class="ruby-keyword">if</span> <span class="ruby-identifier">resource</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">count</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">1</span>
+      <span class="ruby-identifier">sentence</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&quot;errors.messages.not_saved.other&quot;</span>,
+                        <span class="ruby-value">:count</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">resource</span>.<span class="ruby-identifier">errors</span>.<span class="ruby-identifier">count</span>)
+    <span class="ruby-keyword">else</span>
+      <span class="ruby-identifier">sentence</span> = <span class="ruby-constant">I18n</span>.<span class="ruby-identifier">t</span>(<span class="ruby-string">&quot;errors.messages.not_saved.one&quot;</span>)
+    <span class="ruby-keyword">end</span>
+
+    <span class="ruby-identifier">html</span> = <span class="ruby-string">&quot;    &lt;div class=&quot;alert alert-error&quot;&gt;
+      &lt;a class=&quot;close&quot; data-dismiss=&quot;alert&quot;&gt;&lt;i class=&quot;icon-remove&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+      &lt;strong&gt;#{sentence}&lt;/strong&gt;
+      &lt;ul&gt;
+        #{messages}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+&quot;</span>
+
+    <span class="ruby-identifier">html</span>.<span class="ruby-identifier">html_safe</span>
+  <span class="ruby-keyword">end</span></pre>
+          </div><!-- print_error_messages-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- print_error_messages-method -->
+
+    
+    </section><!-- public-instance-method-details -->
+  
+  </section><!-- 5Buntitled-5D -->
+
+</div><!-- documentation -->
+
+
+<footer id="validator-badges">
+  <p><a href="http://validator.w3.org/check/referer">[Validate]</a>
+  <p>Generated by <a href="https://github.com/rdoc/rdoc">RDoc</a> 3.12.
+  <p>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish Rdoc Generator</a> 3.
+</footer>
+

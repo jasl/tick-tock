@@ -3,6 +3,8 @@ require 'date'
 class MomentsController < ApplicationController
   before_filter :authenticate_user!
 
+  # GET /moments/wall
+  # GET /moments/wall.json
   def wall
     @summary = { :total => current_user.moments.count}
     if @summary[:total] > 0
@@ -22,6 +24,8 @@ class MomentsController < ApplicationController
     end
   end
 
+  # GET /moments/get_random
+  # GET /moments/get_random.json
   def get_random
     total_moments = current_user.moments.length
     @moments = []
@@ -80,6 +84,7 @@ class MomentsController < ApplicationController
 
   # POST /moments
   # POST /moments.json
+  # @params moment[note_attributes][body]: string moment's content
   def create
     @moment = current_user.moments.build params[:moment]
 
@@ -96,6 +101,7 @@ class MomentsController < ApplicationController
 
   # PUT /moments/1
   # PUT /moments/1.json
+  # @params moment[note_attributes][body]: string moment's content
   def update
     @moment = current_user.moments.find(params[:id])
 
